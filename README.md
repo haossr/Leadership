@@ -2,12 +2,14 @@ Leadership Project
 ==========
 >####You are very familiar with Western ways, but you are too young. You go everywhere to follow the big news, but the questions you ask are too simple, sometimes naive. ---[*Z.M.Jiang*](http://en.wikiquote.org/wiki/Jiang_Zemin)
 
-This is for my R.A. Job@NSD, Peking Univ. This project is led by  [Prof.Tianyang Xi](http://www.xitianyang.com/)[^1x].  We construct a dataset covering the individual characters of Leaders, and start to do some *empirical* research on it.
+This is for my R.A. Job@NSD, Peking Univ. This project is led by  [Prof.Tianyang Xi](http://www.xitianyang.com/). We construct a dataset covering the individual characters of Leaders, and start to do some *empirical* research on it[<SUP>\*</SUP>](#Com) .
 
-[^1x]:I should say I hate Economists who work without contract spirit, which technically means they don't pay you on time. That's common in China's Universities, and it sucks.
 
 **Fields**: Political Economics
 **Dataset Coverage**: The data set is intended to cover all countries that were or would become independent at any time after 1917, each from the inception of the first representative institutions or from the date of independence, whichever comes first, through 2010.
+
+
+
 
 1.Cleanup
 ----------
@@ -42,3 +44,4 @@ Contact Information
 + Email: hsheng@pku.edu.cn
 + Weibo: [@盛浩Nihilist](http://weibo.com/u/1870340245)
 
+<SMALL id="Com"><SUP>\*</SUP> *I should say I hate Economists who work without contract spirit, which technically means they don't pay you on time. That's common in China's Universities, and it sucks.* </SMALL>
