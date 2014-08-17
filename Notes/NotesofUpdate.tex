@@ -1,0 +1,108 @@
+% ----------------------------------------------------------------
+% Article Class (This is a LaTeX2e document)  ********************
+% ----------------------------------------------------------------
+\documentclass[12pt]{article}
+\usepackage[english]{babel}
+\usepackage{amsmath,amsthm}
+\usepackage{amsfonts}
+\usepackage{bm}
+\usepackage{indentfirst}
+% THEOREMS -------------------------------------------------------
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+
+\topmargin=-1.2cm \oddsidemargin=0.1cm \evensidemargin=0.1cm
+\textwidth=16 true cm \textheight=23 true cm
+
+\font\euler=EUSM10 \font\eulers=EUSM7
+% ----------------------------------------------------------------
+\begin{document}
+
+\title{Notes of Codebook, Leadership Project}%
+%\author{}%
+%\address{}%
+%\thanks{}%
+\date{Last Updated: \today}%
+% ----------------------------------------------------------------
+\maketitle
+% ----------------------------------------------------------------
+
+\section{Variables Newly Added}
+\subsection{Legal Requirement$/$exclusion upon Candidates}
+\setlength{\parindent}{2em}
+Besides the aspects we listed in the initial version of the codebook, countries also impose requirements in candidates' age, religion, violation of laws and citizenship. So we add four variables to capture the further details of candidates' eligibility. The descriptions are listed below:\par
+\textbf{elig\_age:} dummy variable indicating whether there was legal requirement$/$exclusion with regard to age limits for the candidacy of the chief executive. 1, yes. 0, no.\par
+\textbf{elig\_reg:} dummy variable indicating whether there was legal requirement$/$exclusion with regard to religion for the candidacy of the chief executive. 1, yes. 0, no.\par
+\textbf{elig\_crm:} dummy variable indicating whether there was legal requirement$/$exclusion with regard to any record of violation of laws (with any reference to arrest, criminal charges, conviction by a jury, etc). 1, yes. 0, no.\par
+\textbf{elig\_race:} dummy variable indicating whether there was legal requirement/exclusion with regard to race or ethnicity for the candidacy of the chief executive. 1, yes. 0, no.
+
+\section{Options Revised}
+\subsection{ocu\_ce\_sector}
+In the first version of this codebook, we gave a same options for \textbf{edu\_cemajor} and \textbf{ocu\_ce\_sector}. Yet in practice, we find it hard to implement such classification rules. We try to cluster the chief executives' previous jobs by sector rather by the type of work since we suppose the former has a stronger effect on political selection and leaders' policy decision.\par
+\textbf{ocu\_ce\_sector}: categorical variable indicating the sector of the chief executive had been working for before he or she became a government official: 1, not working, 2, agriculture, 3, industry(including energy, mining,manufacture, construction, transportation, real estate) 4, IT, telecom and media, 5, service industry, 6, banking, finance 7, law, 8, natural science research, 9, humanity or social science research, 10, medicine, 11, education-primary and high school, 12, education{college, administration in particular (such as university president), 13, military, 14, arts and sports, 15, other public administration and social organization, NGO, 16 anti-government insurgent groups. 17, others.
+\subsection{religion\_ce}
+For the variable \textbf{religion\_ce}, we add the option \textbf{Hinduism} since it is the 4-th largest religion in population: after Christian, Muslim and
+Buddhism. We also add a choice \textbf{cannot tell} for situations the executive does not clarify his religion or there is no such record.\par
+\textbf{religion\_ce}: religion of the chief executive during the term. 1, Christian; 2, Catholic; 3, Muslim; 4, Orthodox; 5, Buddhism; 6, Jew; 7, non-religious, 8, Hinduism, 9, other religions, 10, cannot tell.
+\subsection{careerafter}
+We add the option \textbf{continued to be a politician but did not work in public sector} for `nominal' retired executives like Bill Clinton: they are not hired by the public sector but still deal with political issue like visiting foreign countries and delivering political address.\par
+\textbf{careerafter:} the career path of the politician for the time during one year after the complete of the current term. Coded only if \textbf{posttenurefate} is equal to 0. Coded as: 1, reelected. 2, retired. 3, stayed in public sector. 4, went to private sector. 5, continued to be a politician but did not work in public sector.
+\section{Corrigendum and Clarification}
+\subsection{Timing}
+For each year, we choose the day December 31th as the time point to record (unless the current government is a caretaker. In that case, we should move forward to the prior government prior.). Some experience indicator may change in a single term as time goes by. Foe simplicity, we record most variables(except the following two) \textbf{prior to the current term}, which means they should be consistent during one term.\par
+Following variable is also recorded by term, but \textbf{the current term is included}:
+\textbf{Nterm\_ce} \par
+Following variable is recorded by year, which means they should be updated \textbf{every year}:
+\textbf{length\_ce}
+\subsection{exp\_ce\_leglocalyear}
+It should be clarified the variable \textbf{exp\_ce\_leglocalyear} record the number of years that the executives \textbf{served as legislator at local level} as for the ambiguous phrase \textit{legislative years}.\par
+\textbf{exp\_ce\_leglocalyear:} the number of legislative years the incumbent had served at local (county, city$/$municipality, province$/$state) level prior to the current term.
+\subsection{exp\_ce\_legis}
+It should be noticed in this variable we should only record the experience that the chief executives served for \textbf{national$/$center} legislator like national parliament, national congress, house of representatives and national senator.
+\subsection{exp\_cemajor}
+In the option \textbf{2, arts or education}, \textbf{arts} refer to liberal arts majors like literature, philosophy and history, etc.
+
+\section{Other Coding Rules}
+\subsection{edu\_ceyear}
+When the exact year of education received is unaccessible, we impute the data using the eight categories of educational attainment, \textbf{edu\_ce}, according to the conventions of Morrisson and Murtin (2010), Besley and Reynal-Querol (2011). The details of coding rules are listed as follows:
+\begin{itemize}
+\setlength{\itemsep}{0pt}
+\setlength{\parsep}{0pt}
+\setlength{\parskip}{0pt}
+\item illiterate (no formal education)---0 years;
+\item literate (no formal education)---2 years;
+\item grade/elementary/primary school or tutors---6 years;
+\item high/finishing/secondary/trade school---12 years (+6);
+\item special training (beyond high school), such as mechanical, nursing, art,music, or military school---16 (+4) years;
+\item college---16 (+4) years;
+\item graduate or professional school (e.g., master¡¯s degree)---18 years (+2);
+\item doctorate (e.g., Ph.D.)---20 years (+2).
+\end{itemize}
+\subsection{exp\_ce\_public, exp\_ce\_private}
+Experience of legislative, executive(government), judicial and military position should all be taken into account for \textbf{exp\_ce\_public}. But pure party activities are not included. \par
+When the chief executive has experience severing in a school, university, bank or other institution unclear in property right, we should look into whether his or her institution is a private or public one first. We record the working experience in public school, public university and state-run bank in the variable \textbf{exp\_ce\_public}, while those in private school, university and bank in the variable \textbf{exp\_ce\_private}.
+\subsection{exp\_ce\_minister}
+Nominal job title like \textit{Lord Privy Seal} should not be accounted as experience severing as a minister or head of bureaucratic agency.
+\subsection{exp\_cemajor}
+When the chief executive graduated with more than degrees, we record upon his or her primary major. When he or she majored in more than one fields, we should focus on the fields related to his or her work experience.
+\subsection{ocu\_ce\_sector}
+When the chief executive have been for working for several jobs in different sector, we should focus on the main/longest/last jobs. When the sector of his or her main/longest/last jobs are not same, we should look into his education background in the variable \textbf{exp\_cemajor} and use our common sense to pick up one of his or her occupation most related.
+\subsection{exp\_ce\_governor}
+The experience of colony's governor should be taken into account.
+\subsection{Nterm\_ce}
+Previous terms less than one-year(thus maybe not lie in our coverage) should be counted in this variable.
+\subsection{exp\_ce\_central}
+Experience in international organization like IOC(International Olympic Committee) or Red Cross should not be taken into consideration for this variable.
+\subsection{exp\_ce}
+Honorary degree, (even those acquired before current term) should not be taken into consideration.
+
+\section{Discussion}
+..
+\end{document}
+% ----------------------------------------------------------------
