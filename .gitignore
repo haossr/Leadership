@@ -49,6 +49,8 @@ Icon
 *.doc
 *.docx
 *.pdf
+!/Codebook/*.pdf
+!/Notes/*.pdf
 
 #Latexing related files
 *.blg
@@ -63,7 +65,7 @@ Icon
 # =========================
 # CodingFree Directories
 # =========================
-Task/
-Literature/
+/Task/
+/Literature/
 /Cleanup/*
 !/Cleanup/DoFile
