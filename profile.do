@@ -1,5 +1,5 @@
 capture log close _all
-local fn = subinstr("`c(current_date)'"," ","",2)+"_"+subinstr("`c(current_time)'",":","",2)  /*这一串是设定log文件的，钟经樊发明！*/
+local fn = subinstr("`c(current_date)'"," ","",2)+"_"+subinstr("`c(current_time)'",":","",2) 
 *log using .\log\s`fn'.log, replace
 *cmdlog using .\log\c`fn'.log, replace
 noisily log using .\log\S_permanent.log, append name("Permanent log file by Hari SHENG")
