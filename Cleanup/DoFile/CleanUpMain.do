@@ -2,7 +2,8 @@ drop _all
 clear all
 set more off
 set trace on
-cd "E:\Dropbox\Project-Leadership\Data-Cleanup\DoFile"
+*cd "E:\Dropbox\Project-Leadership\Data-Cleanup\DoFile"
+cd E:\GitHub\Leadership\Cleanup\DoFile
 
 **********************************************************************
 *Manual Manipulating
@@ -23,14 +24,14 @@ cd "E:\Dropbox\Project-Leadership\Data-Cleanup\DoFile"
 **************  I. Merge                       ***********************
 **********************************************************************
 do Merge.do
-cd "E:\Dropbox\Project-Leadership\Data-Cleanup\DoFile"
+cd ..\DoFile
 
 
 **********************************************************************
 **************  II. Clean (and add source marker)*********************
 **********************************************************************
 do Clean.do
-cd "E:\Dropbox\Project-Leadership\Data-Cleanup\DoFile"
+cd ..\DoFile
 **********************************************************************
 **************  III. Check                     ***********************
 **********************************************************************

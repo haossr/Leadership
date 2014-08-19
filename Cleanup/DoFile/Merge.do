@@ -3,8 +3,8 @@ clear all
 set more off
 set trace on
 
-cd "E:\Dropbox\Project-Leadership\Data-Cleanup\RawData"
-
+*cd "E:\Dropbox\Project-Leadership\Data-Cleanup\RawData"
+cd ..\RawData
 
 **********************************************************************
 **************  1. get the list of filename    ***********************
@@ -28,18 +28,17 @@ save ../WorkingData/filename.dta,replace
 **************  2. exl2dta                     ***********************
 **********************************************************************
 clear all
-cd "E:\Dropbox\Project-Leadership\Data-Cleanup\RawData" //简化CD部分
 local file : dir . files "*", nofail
 local obs=1
+cd ..\WorkingData
 foreach f of local file {
-	cd "E:\Dropbox\Project-Leadership\Data-Cleanup\RawData"
+	local f = "..\RawData\"+"`f'"
 	clear
 	capture import excel "`f'", sheet("Individuals") firstrow allstring 
 	sca _rc1 = _rc
 	capture import excel "`f'", sheet("Individual") firstrow allstring 
 	if !(_rc) | !(_rc1){ //For more than one sheet: Sheet "Individuals"
-		cd "E:\Dropbox\Project-Leadership\Data-Cleanup\WorkingData"	
-		
+
 		capture drop if cen ==""
 		capture drop if year ==""
 		capture gen year = 2010 - _N + _n //如果缺少year变量，根据序号生成
@@ -48,11 +47,11 @@ foreach f of local file {
 		save `obs'-2.dta, replace
 		clear
 		
-		cd "E:\Dropbox\Project-Leadership\Data-Cleanup\RawData"
+
 		clear
 		capture import excel "`f'", sheet("Institution") firstrow allstring 
 		capture import excel "`f'", sheet("Institutions") firstrow allstring 
-		cd "E:\Dropbox\Project-Leadership\Data-Cleanup\WorkingData"	
+		
 		capture drop if cen ==""
 		capture drop if year ==""
 		capture gen year = 2010 - _N + _n //如果缺少year变量，根据序号生成
@@ -67,10 +66,10 @@ foreach f of local file {
 	}
 	
 	else{	
-		cd "E:\Dropbox\Project-Leadership\Data-Cleanup\RawData"
+
 		import excel "`f'", firstrow allstring clear
 		
-		cd "E:\Dropbox\Project-Leadership\Data-Cleanup\WorkingData"	
+
 		capture gen year = 1949 + _n if _N ==61//如果缺少year变量，根据序号生成
 		
 		gen ismerge = 0
@@ -95,7 +94,7 @@ foreach f of local file {
 **************  3. merge                       ***********************
 **********************************************************************
 
-cd "E:\Dropbox\Project-Leadership\Data-Cleanup\WorkingData"	
+cd ..\WorkingData
 use 1.dta,clear
 local i = 2
 while `i' <no{
@@ -107,7 +106,7 @@ while `i' <no{
 **********************************************************************
 **************  4. variable                    ***********************
 **********************************************************************
-keep country countryn year cen elig_* edu_* firstterm_ce Nterm_ce length_ce exp_ce_* ocu_ce_sector posttenurefate careerafter gender_ce	birthyear_ce religion_ce source* ismerge
+*keep country countryn year cen elig_* edu_* firstterm_ce Nterm_ce length_ce exp_ce_* ocu_ce_sector posttenurefate careerafter gender_ce	birthyear_ce religion_ce source* ismerge
 
 
 **********************************************************************

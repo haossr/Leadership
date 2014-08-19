@@ -2,7 +2,7 @@
 *set trace on
 *clear all
 
-cd "E:\Dropbox\Project-Leadership\Data-Cleanup\WorkingData"
+cd ..\WorkingData
 use Leadership_merged.dta,clear
 set trace on
 **********************************************************************
@@ -21,10 +21,10 @@ drop temp cnlen clen
 **********************************************************************
 capture destring country, replace
 sort country
-merge m:1 country using E:\Dropbox\Project-Leadership\Data-Cleanup\WorkingData\Task.dta
+merge m:1 country using ..\ReferenceData\Task.dta
 drop _merge
 sort sourcefile
-merge m:1 sourcefile using E:\Dropbox\Project-Leadership\Data-Cleanup\WorkingData\filename.dta
+merge m:1 sourcefile using ..\ReferenceData\filename.dta
 drop _merge
 
 ************************************************************
