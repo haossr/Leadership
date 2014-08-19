@@ -51,6 +51,7 @@ Icon
 *.pdf
 !/Codebook/*.pdf
 !/Notes/*.pdf
+*.zip
 
 #Latexing related files
 *.blg

@@ -1,7 +1,7 @@
-drop _all
-clear all
-set more off
-set trace on
+*drop _all
+*clear all
+*set more off
+*set trace on
 
 *cd "E:\Dropbox\Project-Leadership\Data-Cleanup\RawData"
 cd ..\RawData
@@ -9,25 +9,24 @@ cd ..\RawData
 **********************************************************************
 **************  1. get the list of filename    ***********************
 **********************************************************************
-/*
+drop _all
 quietly{
-	local file : dir . files "*", nofail
+	local file: dir . files "*", nofail
 	gen filename=""
 	local obs=1
 	foreach f of local file {
 			set obs `obs'
-			replace file="`f'" in `obs'
+			replace filename="`f'" in `obs'
 			local obs=`obs'+1
 	}
 }
-gen soucefile =_n
-save ../WorkingData/filename.dta,replace
-*/
+gen sourcefile =_n
+save ../ReferenceData/filename.dta,replace
+
 
 **********************************************************************
 **************  2. exl2dta                     ***********************
 **********************************************************************
-clear all
 local file : dir . files "*", nofail
 local obs=1
 cd ..\WorkingData

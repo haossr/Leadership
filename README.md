@@ -2,6 +2,7 @@ Leadership Project
 ==========
 >####You are very familiar with Western ways, but you are too young. You go everywhere to follow the big news, but the questions you ask are too simple, sometimes naive. ---[*Z.M.Jiang*](http://en.wikiquote.org/wiki/Jiang_Zemin)
 
+Thus we have this project to explore each scenario where we might learn something from these great leaders' personal experience.（通过学习长者的人生经验涨姿势）
 This is for my R.A. Job@NSD, Peking Univ. This project is led by  [Prof.Tianyang Xi](http://www.xitianyang.com/). We construct a dataset covering the individual characters of Leaders, and start to do some *empirical* research on it[<SUP>\*</SUP>](#Com) .
 
 **Fields**: Political Economics
@@ -9,6 +10,11 @@ This is for my R.A. Job@NSD, Peking Univ. This project is led by  [Prof.Tianyang
 **Dataset Coverage**: The data set is intended to cover all countries that were or would become independent at any time after 1917, each from the inception of the first representative institutions or from the date of independence, whichever comes first, through 2010.
 
 
+
+- [x] Cleanup
+- [ ] Merge
+- [ ] Basic Trend Table
+- [ ] Regression
 
 
 1.Cleanup
@@ -43,7 +49,9 @@ Merge our dataset with following dataset:
 >This part is still in progress.
 
 
-
+4.Regression
+----------
+>This part is still in progress.
 
 
 Contact Information
