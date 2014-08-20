@@ -1,21 +1,19 @@
-
- 
  
 **********************************************************************
 **************  a. initialization              ***********************
 **********************************************************************
 cd ..\RawData
-*a.1.PWT80.dta
-use .\PWT80\pwt80.dta, clear
-rename countrycode PWTCode
-sort PWTCode
-save ..\WorkingData\pwt80.dta, replace
+use .\ddrevisited\ddrevisited_data_v1.dta, clear
+rename cowcode COWCode
+sort COWCode
+save ..\WorkingData\ddrevisited.dta, replace
+
 
 **********************************************************************
 **************  b. merge and check
 **********************************************************************
 cd ..\WorkingData
-use Leadership_1.dta, clear
+use Leadership_2.dta, clear
 sort COWCode
 merge m:1 COWCode using countryID.dta
 tab _merge
@@ -25,4 +23,4 @@ if testing{
 *	bysort country: keep if _n==1
 }
 drop _merge
-save Leadership_2.dta, replace
+save Leadership_3.dta, replace

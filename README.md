@@ -14,12 +14,20 @@ This is for my R.A. Job@NSD, Peking Univ. This project is led by  [Prof.Tianyang
 
 - [x] Cleanup
 - [ ] Merge
-	- [ ] Czechoslovakia
-	- [ ] yugoslavia
-	- [ ] yemensouth
-	- [ ] germany
-
+	- [x] PIPE
+	- [x] PWT80
+		- [ ] Czechoslovakia
+		- [ ] yugoslavia
+		- [ ] yemensouth
+		- [ ] germany
+	- [ ] ddrevisted
+	- [ ] Archigos
 - [ ] Basic Trend Table
+	- [ ] Selection mechanism / barrier to entry
+	- [ ] Education
+	- [ ] Age & gender
+	- [ ] Experience
+	- [ ] Correlation analysis
 - [ ] Regression
 
 

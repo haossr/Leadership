@@ -8,13 +8,14 @@
 cd ..\RawData
 *a.2.PIPE.dta
 use .\PIPE\PIPE_081813.dta, clear
-drop if country ==.
+rename country PIPECode
+drop if PIPECode ==.
 replace countryn = lower(countryn)
 
 *a.3.PIPE-imputation
 expand 3 if year == 2008
-bysort country year: replace year = 2008+_n-1 if _n>1 & country!=.
-sort country year
+bysort PIPECode year: replace year = 2008+_n-1 if _n>1 & PIPECode!=.
+sort PIPECode year
 save ..\WorkingData\PIPE.dta, replace
 
 
@@ -23,8 +24,9 @@ save ..\WorkingData\PIPE.dta, replace
 **********************************************************************
 cd ..\WorkingData
 *b.1.Merge
-use Leadership.dta, clear
-merge 1:1 country year using PIPE.dta
+use Leadership_0.dta, clear
+sort PIPECode
+merge 1:1 PIPECode year using PIPE.dta
 tab _merge
  
 *b.2.Check
@@ -36,7 +38,5 @@ if testing{
 if !testing{
 drop if _merge==2
 }
-gen con = 0
-replace con =1 if countryn = countryn_L
-
-save LeadershipMerged_1.dta, replace
+drop _merge
+save Leadership_1.dta, replace
