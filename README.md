@@ -25,7 +25,7 @@ This is for my R.A. Job@NSD, Peking Univ. This project is led by  [Prof.Tianyang
 
 1.Cleanup
 ----------
-See the *Cleanup* directory. The main **Stata** do-file is *CleanUpMain.do*.
+See the [*Cleanup*](https://github.com/Hari-Sheng/Leadership/tree/master/Cleanup/DoFile) directory. The main **Stata** do-file is [*CleanUpMain.do*](https://github.com/Hari-Sheng/Leadership/blob/master/Cleanup/DoFile/CleanUpMain.do).
 It will: 
 
 - a)walk through the Excel tables submitted by the R.A. group and merge them into a **Stata** .dta dataset; 
@@ -36,7 +36,7 @@ It will:
 
 2.Merge
 ----------
-See the *Merge* directory.
+See the [*Merge*](https://github.com/Hari-Sheng/Leadership/tree/master/Merge/DoFile) directory. The main **Stata** do-file is [*MergeMain.do*](https://github.com/Hari-Sheng/Leadership/blob/master/Merge/DoFile/MergeMain.do).
 Merge our dataset with following dataset:
 
 -  PIPE
