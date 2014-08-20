@@ -2,9 +2,9 @@ drop _all
 clear all
 set more off
 set trace on
-*cd D:\GitHub\Leadership\Cleanup\DoFile
+cd D:\GitHub\Leadership\Cleanup\DoFile
 sca testing = 0
-cd E:\GitHub\Leadership\Cleanup\DoFile
+*cd E:\GitHub\Leadership\Cleanup\DoFile
 
 **********************************************************************
 *Manual Manipulating
@@ -23,6 +23,8 @@ cd E:\GitHub\Leadership\Cleanup\DoFile
 **Data -55 El Salvador-SJN-revised: cen->countryn, »¹ÊÇ´í£¬ÎÞÓïÄýÒ­ 
 **Data - 59 Honduras  - YML: countryn->Honduras, country->59
 **Data - 158 Cequatorial guinea- LC- -> Data - 158 equatorial guinea- LC-
+**Data - 83 iraq- YML£º no constituion nor elective law before 1958-[blank]
+
 **********************************************************************
 
 **********************************************************************

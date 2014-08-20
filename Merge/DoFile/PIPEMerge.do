@@ -14,6 +14,7 @@ replace countryn = lower(countryn)
 
 *a.3.PIPE-imputation
 expand 3 if year == 2008
+drop if PIPECode==.
 bysort PIPECode year: replace year = 2008+_n-1 if _n>1 & PIPECode!=.
 sort PIPECode year
 save ..\WorkingData\PIPE.dta, replace
@@ -35,8 +36,6 @@ if testing{
 	tab year if _merge==1
 	tab filename if _merge==1
 }
-if !testing{
 drop if _merge==2
-}
 drop _merge
 save Leadership_1.dta, replace

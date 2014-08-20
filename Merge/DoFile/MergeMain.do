@@ -2,9 +2,9 @@ drop _all
 clear all
 set more off
 set trace on
-*cd D:\GitHub\Leadership\Cleanup\DoFile
+cd D:\GitHub\Leadership\Merge\DoFile
 sca testing = 1
-cd E:\GitHub\Leadership\Merge\DoFile
+*cd E:\GitHub\Leadership\Merge\DoFile
 
 **********************************************************************
 *Manual Manipulating

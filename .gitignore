@@ -65,6 +65,10 @@ Icon
 #BaiduYun related files
 *.baiduyun.uploading.cfg
 
+$Stata graph exported
+*.gph
+*.png
+
 # =========================
 # CodingFree Directories
 # =========================
