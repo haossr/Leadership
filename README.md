@@ -20,10 +20,11 @@ This is for my R.A. Job@NSD, Peking Univ. This project is led by  [Prof.Tianyang
 		- [ ] yugoslavia
 		- [ ] yemensouth
 		- [ ] germany
-	- [ ] ddrevisted
-	- [ ] Archigos
+	- [x] ddrevisted
+		- [] 6% unmatched
+	- [x] Archigos
 - [ ] Basic Trend Table
-	- [ ] Selection mechanism / barrier to entry
+	- [x] Selection mechanism / barrier to entry
 	- [ ] Education
 	- [ ] Age & gender
 	- [ ] Experience
