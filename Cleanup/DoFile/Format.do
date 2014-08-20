@@ -57,5 +57,7 @@ sort sourcefile
 merge m:1 sourcefile using ..\ReferenceData\filename.dta
 drop _merge
 order source* file*, after( exp_ce_sector)
+drop if year>2010
+drop if year<1950
 save ..\Leadership, replace
 save ..\..\Merge\RawData\Leadership, replace
