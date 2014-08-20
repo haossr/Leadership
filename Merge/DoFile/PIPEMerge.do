@@ -11,10 +11,6 @@ use .\PIPE\PIPE_081813.dta, clear
 drop if country ==.
 replace countryn = lower(countryn)
 
-
-
-pause 
-
 *a.3.PIPE-imputation
 expand 3 if year == 2008
 bysort country year: replace year = 2008+_n-1 if _n>1 & country!=.

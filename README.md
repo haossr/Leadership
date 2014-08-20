@@ -14,6 +14,11 @@ This is for my R.A. Job@NSD, Peking Univ. This project is led by  [Prof.Tianyang
 
 - [x] Cleanup
 - [ ] Merge
+	- [ ] Czechoslovakia
+	- [ ] yugoslavia
+	- [ ] yemensouth
+	- [ ] germany
+
 - [ ] Basic Trend Table
 - [ ] Regression
 
