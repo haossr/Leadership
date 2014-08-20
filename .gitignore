@@ -62,6 +62,8 @@ Icon
 *.bak
 *.tex.bak
 
+#BaiduYun related files
+*.baiduyun.uploading.cfg
 
 # =========================
 # CodingFree Directories
