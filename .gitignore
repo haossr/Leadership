@@ -44,6 +44,8 @@ Icon
 *.xls
 *.csv
 *.xlsx
+!*/ReferenceData/*.xlsx
+!*/ReferenceData/*.xls
 *.dta
 *.rar
 *.doc
