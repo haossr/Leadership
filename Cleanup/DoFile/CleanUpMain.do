@@ -2,9 +2,13 @@ drop _all
 clear all
 set more off
 set trace on
-cd D:\GitHub\Leadership\Cleanup\DoFile
 sca testing = 0
-*cd E:\GitHub\Leadership\Cleanup\DoFile
+if c(username)== "Hari"{
+	cd D:\GitHub\Leadership\Merge\DoFile
+}
+else {
+cd E:\GitHub\Leadership\Merge\DoFile
+}
 
 **********************************************************************
 *Manual Manipulating

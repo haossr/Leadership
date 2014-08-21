@@ -1,4 +1,10 @@
-cd D:\GitHub\Leadership\Trend\WorkingData
+if c(username)== "Hari"{
+	cd D:\GitHub\Leadership\Trend\DoFile
+}
+else {
+cd E:\GitHub\Leadership\Trend\DoFile
+}
+cd ..\WorkingData
 ************************************************************************
 *************** 1. Initilization
 ************************************************************************
