@@ -1,4 +1,4 @@
-if c(username)== "Hari"{
+if c(username)== "Leonard"{
 	cd D:\GitHub\Leadership\Trend\DoFile
 }
 else {

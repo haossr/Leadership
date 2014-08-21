@@ -1,4 +1,4 @@
-if c(username)== "Hari"{
+if c(username)== "Leonard"{
 	cd D:\GitHub\Leadership\Trend\DoFile
 }
 else {
@@ -191,14 +191,16 @@ graph export ..\Graph\3_9_2.png, replace
 graph combine ..\Graph\3_9_1.gph ..\Graph\3_9_2.gph, ycommon title("Education") subtitle("Trend of Education Level") 
 graph export ..\Graph\3_9.png, replace
 
+
 *3.10
 use education_3_0.dta, clear
 drop if democracy ==.
+quietly sum
 gen weight = 1/r(N)
-gen weight_d = weight*democracy
-gen weight_n = weight*(1-democracy)
-drop weight
-collapse (sum)weight*, by(democracy edu_cemajor_N)
+gen weight_d = weight * democracy
+gen weight_n = weight * (1-democracy)
+
+collapse (sum)weight_d weight_n, by(edu_cemajor_N democracy)
 
 label define major 1 "Low or other" 2 "Liberal arts" 3 "Science and technology" 4 "Social Science" 5 "Military"
 label values edu_cemajor_N major
@@ -213,6 +215,8 @@ graph bar weight* ,
 	title("Education") 
 	subtitle("Frequency of Major")
 	legend(label (1 "Democratic countries") label (2 "Non-democratic countries"));
+#delimit cr
+graph export ..\Graph\3_10.png, replace
 /*	graph save Graph ..\Graph\3_41.gph, replace;
 	graph export ..\Graph\3_41.png, replace;
 	
@@ -226,3 +230,65 @@ graph bar weight* if year_b1991==0,
 	graph export ..\Graph\3_42.png, replace;
 #delimit cr
 */
+
+*3.11
+use education_3_0.dta, clear
+replace OECD=0 if OECD==.
+quietly sum
+gen weight = 1/r(N)
+gen weight_d = weight * OECD
+gen weight_n = weight * (1-OECD)
+collapse (sum)weight_d weight_n, by(edu_cemajor_N OECD)
+
+label define major 1 "Low or other" 2 "Liberal arts" 3 "Science and technology" 4 "Social Science" 5 "Military"
+label values edu_cemajor_N major
+
+save education_3_11.dta, replace
+label variable weight_d "OECD countries"
+label variable weight_n "Non-OECD countries"
+#delimit ;
+graph bar weight* , 
+	over(edu_cemajor_N) 
+	bar(1, color(navy)) bar(2, color(maroon)) 
+	title("Education") 
+	subtitle("Frequency of Major")
+	legend(label (1 "OECD countries") label (2 "Non-OECD countries"));
+#delimit cr
+graph export ..\Graph\3_11.png, replace
+/*	graph save Graph ..\Graph\3_41.gph, replace;
+	graph export ..\Graph\3_41.png, replace;
+	
+graph bar weight* if year_b1991==0,
+	over(edu_ce) 
+	bar(1, color(navy)) bar(2, color(maroon)) 
+	title("Education") 
+	subtitle("Frequency of Edu. level, after 1991")
+	legend(label (1 "OECD countries") label (2 "Non-OECD countries"));
+	graph save Graph ..\Graph\3_42.gph, replace;
+	graph export ..\Graph\3_42.png, replace;
+#delimit cr
+*/
+
+*3.13
+use education_3_0.dta, clear
+collapse (mean)edu_ceyear, by(year democracy)
+#delimit ;
+twoway (line edu_ceyear year if democracy == 1)(line edu_ceyear year if democracy == 0),
+	title("Education")
+	subtitle("Year or education")
+	legend(label (1 "Democratic countries") label (2 "Non-democratic countries"));
+#delimit cr
+graph export ..\Graph\3_13.png, replace
+
+
+*3.14
+use education_3_0.dta, clear
+replace OECD=0 if OECD==.
+collapse (mean)edu_ceyear, by(year OECD)
+#delimit ;
+twoway (line edu_ceyear year if OECD == 1)(line edu_ceyear year if OECD == 0),
+	title("Education")
+	subtitle("Year or education")
+	legend(label (1 "OECD countries") label (2 "Non-OECD countries"));
+#delimit cr
+graph export ..\Graph\3_14.png, replace
