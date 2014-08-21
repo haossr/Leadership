@@ -1,33 +1,10 @@
-if c(username)== "Leonard"{
-	cd D:\GitHub\Leadership\Trend\DoFile
-}
-else {
-cd E:\GitHub\Leadership\Trend\DoFile
-}
-cd ..\RawData
+cd ..\WorkingData\
 ************************************************************************
-*************** 1. Initilization
-************************************************************************
-
-use Leadership.dta,clear
-save ..\WorkingData\Leadership.dta, replace
-
-cd ..\Workingdata
-drop if year<1950
-drop if year>2010
-
-
-collapse (mean) elig*, by(year)
-*foreach var in elig*{
-*	twoway line `var' year
-*}
-save selection.dta, replace
-
-************************************************************************
-*************** 2. Trend: Selection mechanism/barrier to entry
+*************** Trend: Selection mechanism/barrier to entry
 ************************************************************************
 use selection.dta, clear
 *2.1.proportion of countries in which the only barrier to entry is citizenship and age
+*twoway (line elig_ac year) ,title("Selection mechanism") subtitle("Proportion of countries in which the only barrier to entry is citizenship and age")
 twoway (line elig_citizen year)(line elig_age year),title("Selection mechanism") subtitle("Proportion of countries in which the only barrier to entry is citizenship and age")
 graph save Graph ..\Graph\selection_citizen_age.gph, replace
 graph export ..\Graph\selection_citizen_age.png, replace

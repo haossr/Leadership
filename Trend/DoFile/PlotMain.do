@@ -1,13 +1,14 @@
 drop _all
 clear all
 set more off
-set trace on
+set trace off
 sca testing = 1
+
 if c(username)== "Leonard"|c(username)=="Hari"{
-	cd D:\GitHub\Leadership\Merge\DoFile
+	cd D:\GitHub\Leadership\Trend\DoFile
 }
 else {
-cd E:\GitHub\Leadership\Merge\DoFile
+	cd E:\GitHub\Leadership\Trend\DoFile
 }
 
 

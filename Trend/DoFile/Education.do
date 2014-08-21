@@ -1,152 +1,147 @@
-if c(username)== "Leonard"{
-	cd D:\GitHub\Leadership\Trend\DoFile
-}
-else {
-cd E:\GitHub\Leadership\Trend\DoFile
-}
-cd ..\WorkingData
+cd ..\WorkingData\
+set graphics on
 ************************************************************************
-*************** 1. Initilization
+*************** Trend: Education
 ************************************************************************
-use Leadership.dta, replace
-save education_3_01.dta, replace
-drop if year<1950
-drop if year>2010
-replace edu_ce =. if edu_ce==0
-recode edu_ce (1 2 3 = 1)(4 5 = 2)(6 7 8= 3), gen(edu_ce_N)
-
-recode edu_cemajor (1 11 = 1)(2 10 = 2)(3 4 9 = 3)(5 6 7 = 4)(8 = 5), gen(edu_cemajor_N)
-drop if edu_cemajor_N > 5
+*3.0
+use education.dta, clear
+drop edu_ce_N*
+forvalue i =1/8{
+	gen Nedu_ce_`i' = edu_ce_`i'
+}
+collapse (mean)edu_ce_* (sum)Nedu_ce_*, by(year)
 save education_3_0.dta, replace
 
-************************************************************************
-*************** 2. Trend: Selection mechanism/barrier to entry
-************************************************************************
-*3.1
-use education_3_0.dta, clear
-tabulate edu_ce_N, gen(edu_group)
-collapse (mean)edu_group*, by(year)
+forvalue i =1/8{
+label variable edu_ce_`i' "Frequency"
+label variable Nedu_ce_`i' "# of obs"
+#delimit ;
+	twoway 
+	(bar Nedu_ce_`i' year, color(ltgrey) fintensity(inten10) lcolor(white) lwidth(0))
+	(line edu_ce_`i' year, yaxis(2)) , 
+	title("Education") 
+	subtitle("Trend of Education Level, Edu. level = `i'")
+	saving(..\Graph\3_0_`i'.gph, replace);
+#delimit cr
+graph export ..\Graph\3_0_`i'.png, replace
+}
 
-label variable edu_group1 "Edu. level 1-3"
-label variable edu_group2 "Edu. level 4-5"
-label variable edu_group3 "Edu. level 6-8"
-*label variable edu_group1 "Education level 1-3"
-*label variable edu_group2 "Education level 4-5"
-*label variable edu_group3 "Education level 6-8"
+*3.1
+use education.dta, clear
+collapse (mean)edu_ce_N_*, by(year)
+label variable edu_ce_N_1 "Edu. level 1-3"
+label variable edu_ce_N_2 "Edu. level 4-5"
+label variable edu_ce_N_3 "Edu. level 6-8"
 save education_3_1.dta, replace
 
-twoway (line edu_group* year), title("Education") subtitle("Trend of Education Level")
+#delimit ;
+	twoway (line edu_ce_N_* year), 
+	title("Education") 
+	subtitle("Trend of Education Level")
+	legend(label (1 "Edu. level 1-3") label (2 "Edu. level 4-5") label (3 "Edu. level 6-8"));
+#delimit cr
 graph export ..\Graph\3_1.png, replace
 
 
 *3.2, 3.3
-use education_3_0.dta, clear
-tabulate edu_ce_N, gen(edu_group)
-collapse (mean)edu_group*, by(year democracy)
-
-label variable edu_group1 "Edu. level 1-3"
-label variable edu_group2 "Edu. level 4-5"
-label variable edu_group3 "Edu. level 6-8"
+use education.dta, clear
+collapse (mean)edu_ce_N_*, by(year democracy)
+label variable edu_ce_N_1 "Edu. level 1-3"
+label variable edu_ce_N_2 "Edu. level 4-5"
+label variable edu_ce_N_3 "Edu. level 6-8"
 save education_3_23.dta, replace
 
-twoway line edu_group* year if democracy==1,t2title("Democratic")
+twoway line edu_ce_N_* year if democracy==1,t2title("Democratic")
 graph save Graph ..\Graph\3_2.gph, replace
 graph export ..\Graph\3_2.png, replace
-twoway line edu_group* year if democracy==0,t2title("Non-democratic")
+twoway line edu_ce_N_* year if democracy==0,t2title("Non-democratic")
 graph save Graph ..\Graph\3_3.gph, replace
 graph export ..\Graph\3_3.png, replace
-graph combine ..\Graph\3_2.gph ..\Graph\3_3.gph, ycommon title("Education") subtitle("Trend of Education Level") 
+
+#delimit ;
+graph combine ..\Graph\3_2.gph ..\Graph\3_3.gph,
+	ycommon 
+	title("Education") 
+	subtitle("Trend of Education Level");
+#delimit cr
 graph export ..\Graph\3_23.png, replace
 
 
 *3.4
-use education_3_0.dta, clear
-drop if democracy ==.
-drop if year ==.
-drop if edu_ce ==.
-
-gen year_b1991 = 1
-replace year_b1991 = 0 if year>=1991
-tabulate edu_ce, gen(edu_group)
-gen weight = 1/r(N)
-gen weight_d = weight*democracy
-gen weight_n = weight*(1-democracy)
-drop weight
-collapse (sum)weight*, by(year_b1991 democracy edu_ce)
+use education.dta, clear
+collapse (sum)weight_d weight_nd, by(year_b1991 democracy edu_ce)
 save education_3_4.dta, replace
 
-label variable weight_d "Democratic countries"
-label variable weight_n "Non-democratic countries"
 #delimit ;
-graph bar weight* if year_b1991==1, 
+graph bar weight_d weight_nd if year_b1991==1, 
 	over(edu_ce) 
 	bar(1, color(navy)) bar(2, color(maroon)) 
-	title("Education") 
 	subtitle("Frequency of Edu. level, before 1991")
 	legend(label (1 "Democratic countries") label (2 "Non-democratic countries"));
-	graph save Graph ..\Graph\3_41.gph, replace;
-	graph export ..\Graph\3_41.png, replace;
-	
+#delimit cr
+graph save Graph ..\Graph\3_41.gph, replace
+*graph export ..\Graph\3_41.png, replace
+
+#delimit ;	
 graph bar weight* if year_b1991==0,
 	over(edu_ce) 
 	bar(1, color(navy)) bar(2, color(maroon)) 
-	title("Education") 
 	subtitle("Frequency of Edu. level, after 1991")
 	legend(label (1 "Democratic countries") label (2 "Non-democratic countries"));
-	graph save Graph ..\Graph\3_42.gph, replace;
-	graph export ..\Graph\3_42.png, replace;
 #delimit cr
+graph save Graph ..\Graph\3_42.gph, replace
+*graph export ..\Graph\3_42.png, replace
 
-*graph combine ..\Graph\3_41.gph ..\Graph\3_42.gph, ycommon title("Education") subtitle("Trend of Education Level") 
+#delimit ;
+graph combine ..\Graph\3_41.gph ..\Graph\3_42.gph, 
+	ycommon 
+	title("Education"); 
+#delimit cr
+graph export ..\Graph\3_4.png, replace
 
 
 *3.5, 3.6
-use education_3_0.dta, clear
-replace OECD=0 if OECD==.
-tabulate edu_ce_N, gen(edu_group)
-collapse (mean)edu_group*, by(year OECD)
-label variable edu_group1 "Edu. level 1-3"
-label variable edu_group2 "Edu. level 4-5"
-label variable edu_group3 "Edu. level 6-8"
+use education.dta, clear
+collapse (mean)edu_ce_N_*, by(year OECD)
+label variable edu_ce_N_1 "Edu. level 1-3"
+label variable edu_ce_N_2 "Edu. level 4-5"
+label variable edu_ce_N_3 "Edu. level 6-8"
 save education_3_56.dta, replace
 
-twoway line edu_group* year if OECD==1,t2title("OECD")
+twoway line edu_ce_N_* year if OECD==1,t2title("OECD")
 graph save Graph ..\Graph\3_5.gph, replace
 graph export ..\Graph\3_5.png, replace
-twoway line edu_group* year if OECD==0,t2title("Non-OECD")
+twoway line edu_ce_N_* year if OECD==0,t2title("Non-OECD")
 graph save Graph ..\Graph\3_6.gph, replace
 graph export ..\Graph\3_6.png, replace
-graph combine ..\Graph\3_5.gph ..\Graph\3_6.gph, ycommon title("Education") subtitle("Trend of Education Level") 
+
+#delimit ;
+graph combine ..\Graph\3_5.gph ..\Graph\3_6.gph, 
+	ycommon 
+	title("Education") 
+	subtitle("Trend of Education Level"); 
+#delimit cr
 graph export ..\Graph\3_56.png, replace
 
+
+
 *3.7
-use education_3_0.dta, clear
-replace OECD=0 if OECD==.
-drop if year ==.
-drop if edu_ce ==.
-gen year_b1991 = 1
-replace year_b1991 = 0 if year>=1991
-tabulate edu_ce, gen(edu_group)
-gen weight = 1/r(N)
-gen weight_o = weight*OECD
-gen weight_n = weight*(1-OECD)
-drop weight
-collapse (sum)weight*, by(year_b1991 OECD edu_ce)
+use education.dta, clear
+collapse (sum)weight_oecd weight_noecd, by(year_b1991 OECD edu_ce)
 save education_3_7.dta, replace
 
-label variable weight_o "OECD countries"
-label variable weight_n "Non-OECD countries"
 #delimit ;
-graph bar weight* if year_b1991==1, 
+graph bar weight_oecd weight_noecd if year_b1991==1, 
 	over(edu_ce) 
 	bar(1, color(navy)) bar(2, color(maroon)) 
 	title("Education") 
 	subtitle("Frequency of Edu. level, before 1991")
 	legend(label (1 "OECD countries") label (2 "Non-OECD countries"));
-	graph save Graph ..\Graph\3_71.gph, replace;
-	graph export ..\Graph\3_71.png, replace;
-	
-graph bar weight* if year_b1991==0,
+#delimit cr
+graph save Graph ..\Graph\3_71.gph, replace
+graph export ..\Graph\3_71.png, replace
+#delimit ;	
+graph bar weight_oecd weight_noecd if year_b1991==0,
 	over(edu_ce) 
 	bar(1, color(navy)) bar(2, color(maroon)) 
 	title("Education") 
@@ -170,11 +165,8 @@ graph bar weight* if year_b1991==0,
 *-vietnam
 
 *3.9
-use education_3_0.dta, clear
-drop if edu_cemajor_N ==.
-tabulate edu_cemajor_N, gen(edu_major_)
+use education.dta, clear
 collapse (mean)edu_major_*, by(year democracy)
-
 label variable edu_major_1 "Low or other"
 label variable edu_major_2 "Liberal arts"
 label variable edu_major_3 "Science and technology"
@@ -193,23 +185,12 @@ graph export ..\Graph\3_9.png, replace
 
 
 *3.10
-use education_3_0.dta, clear
-drop if democracy ==.
-quietly sum
-gen weight = 1/r(N)
-gen weight_d = weight * democracy
-gen weight_n = weight * (1-democracy)
-
-collapse (sum)weight_d weight_n, by(edu_cemajor_N democracy)
-
-label define major 1 "Low or other" 2 "Liberal arts" 3 "Science and technology" 4 "Social Science" 5 "Military"
-label values edu_cemajor_N major
-
+use education.dta, clear
+collapse (sum)weight_d weight_nd, by(edu_cemajor_N democracy)
 save education_3_10.dta, replace
-label variable weight_d "Democratic countries"
-label variable weight_n "Non-democratic countries"
+
 #delimit ;
-graph bar weight* , 
+graph bar weight_d weight_nd , 
 	over(edu_cemajor_N) 
 	bar(1, color(navy)) bar(2, color(maroon)) 
 	title("Education") 
@@ -232,22 +213,12 @@ graph bar weight* if year_b1991==0,
 */
 
 *3.11
-use education_3_0.dta, clear
-replace OECD=0 if OECD==.
-quietly sum
-gen weight = 1/r(N)
-gen weight_d = weight * OECD
-gen weight_n = weight * (1-OECD)
-collapse (sum)weight_d weight_n, by(edu_cemajor_N OECD)
-
-label define major 1 "Low or other" 2 "Liberal arts" 3 "Science and technology" 4 "Social Science" 5 "Military"
-label values edu_cemajor_N major
-
+use education.dta, clear
+collapse (sum)weight_oecd weight_noecd, by(edu_cemajor_N OECD)
 save education_3_11.dta, replace
-label variable weight_d "OECD countries"
-label variable weight_n "Non-OECD countries"
+
 #delimit ;
-graph bar weight* , 
+graph bar weight_noecd weight_oecd, 
 	over(edu_cemajor_N) 
 	bar(1, color(navy)) bar(2, color(maroon)) 
 	title("Education") 
@@ -270,8 +241,9 @@ graph bar weight* if year_b1991==0,
 */
 
 *3.13
-use education_3_0.dta, clear
+use education.dta, clear
 collapse (mean)edu_ceyear, by(year democracy)
+
 #delimit ;
 twoway (line edu_ceyear year if democracy == 1)(line edu_ceyear year if democracy == 0),
 	title("Education")
@@ -282,9 +254,9 @@ graph export ..\Graph\3_13.png, replace
 
 
 *3.14
-use education_3_0.dta, clear
-replace OECD=0 if OECD==.
+use education.dta, clear
 collapse (mean)edu_ceyear, by(year OECD)
+
 #delimit ;
 twoway (line edu_ceyear year if OECD == 1)(line edu_ceyear year if OECD == 0),
 	title("Education")
@@ -292,3 +264,5 @@ twoway (line edu_ceyear year if OECD == 1)(line edu_ceyear year if OECD == 0),
 	legend(label (1 "OECD countries") label (2 "Non-OECD countries"));
 #delimit cr
 graph export ..\Graph\3_14.png, replace
+
+window manage close graph
