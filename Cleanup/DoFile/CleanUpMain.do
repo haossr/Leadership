@@ -3,12 +3,13 @@ clear all
 set more off
 set trace on
 sca testing = 0
+
 if c(username)== "Hari"{
 	cd D:\GitHub\Leadership\Merge\DoFile
 }
 else {
 cd E:\GitHub\Leadership\Merge\DoFile
-}
+}*cd E:\GitHub\Leadership\Cleanup\DoFile
 
 **********************************************************************
 *Manual Manipulating
