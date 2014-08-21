@@ -193,7 +193,7 @@ graph export ..\Graph\3_9.png, replace
 
 *3.10
 use education_3_0.dta, clear
-drop if edu_cemajor_N ==.
+drop if democracy ==.
 gen weight = 1/r(N)
 gen weight_d = weight*democracy
 gen weight_n = weight*(1-democracy)
