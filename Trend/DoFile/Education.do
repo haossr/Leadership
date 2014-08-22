@@ -129,17 +129,18 @@ graph bar weight_oecd weight_noecd if year_b1991==0,
 #delimit cr
 
 *3.8
-*Soviet Union
-*Albania 339
-*Bulgaria 355
-*Cambodia 811
-*Romania 
-*Poland
-*Hungary
-*Laos
-*-Cuba
-*-China
-*-vietnam
+*Czechoslovakia
+*Albania 143
+*Bulgaria 103
+*Romania 121
+*Poland 119
+*Hungary 111
+*Yugoslavia
+*East germany
+*russia 173
+
+
+
 
 *3.9
 use education.dta, clear

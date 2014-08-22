@@ -13,19 +13,17 @@ This is for my R.A. Job@NSD, Peking Univ. This project is led by  [Prof.Tianyang
 
 
 - [x] Cleanup
-- [ ] Merge
+- [x] Merge
 	- [x] PIPE
 	- [x] PWT80
-		- [ ] Czechoslovakia
-		- [ ] yugoslavia
-		- [ ] yemensouth
-		- [ ] germany
+		- [ ] Czechoslovakia, yugoslavia, yemensouth, germany
 	- [x] ddrevisted
-		- [] 6% unmatched
+		- [ ] 6% unmatched
 	- [x] Archigos
 - [ ] Basic Trend Table
 	- [x] Selection mechanism / barrier to entry
-	- [ ] Education
+	- [x] Education
+		- [ ] CIS countries: 3.8, 3.12
 	- [ ] Age & gender
 	- [ ] Experience
 	- [ ] Correlation analysis
