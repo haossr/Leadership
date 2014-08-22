@@ -18,9 +18,23 @@ replace elig_ac = 0 if elig_reg == 1
 replace elig_ac = 0 if elig_race == 1
 replace elig_ac = 0 if elig_exp == 1
 replace elig_ac = 0 if elig_end == 1
+replace elig_ac = 0 if elig_crm == 1
+replace elig_ac = 0 if elig_inc == 1
 
-
-collapse (mean) elig*, by(year)
+foreach var of varlist elig_* {
+	gen N`var' =`var'
+}
+collapse (mean)elig_* (sum)Nelig_*, by(year)
+label variable elig_citizen "Citizenship"
+label variable elig_age "Age"
+label variable elig_edu "Education"
+label variable elig_ocu "Occupation"
+label variable elig_reg "Religion"
+label variable elig_race "Race"
+label variable elig_exp "Experience"
+label variable elig_end "Endorsement"
+label variable elig_crm "Crime"
+label variable elig_inc "Income"
 *foreach var in elig*{
 *	twoway line `var' year
 *}

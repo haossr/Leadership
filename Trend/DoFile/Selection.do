@@ -2,6 +2,24 @@ cd ..\WorkingData\
 ************************************************************************
 *************** Trend: Selection mechanism/barrier to entry
 ************************************************************************
+*2.0
+use selection.dta, clear
+drop elig_ac
+foreach var of varlist elig_* {
+local l`var' : variable label `var'
+label variable `var' "Proportion(RHS)"
+label variable N`var' "# of obs(LHS)"
+#delimit ;
+	twoway 
+	(bar N`var' year, fcolor(grey) fintensity(inten10) lcolor(white) lwidth(0))
+	(line `var' year, yaxis(2)) , 
+	title("Selection") 
+	subtitle("Proportion of entry barrier: `l`var''")
+	saving(..\Graph\selection_`var'.gph, replace);
+#delimit cr
+graph export ..\Graph\selection_`var'.png, replace
+}
+
 use selection.dta, clear
 *2.1.proportion of countries in which the only barrier to entry is citizenship and age
 *twoway (line elig_ac year) ,title("Selection mechanism") subtitle("Proportion of countries in which the only barrier to entry is citizenship and age")

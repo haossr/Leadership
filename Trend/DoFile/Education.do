@@ -3,29 +3,6 @@ set graphics on
 ************************************************************************
 *************** Trend: Education
 ************************************************************************
-*3.0
-use education.dta, clear
-drop edu_ce_N*
-forvalue i =1/8{
-	gen Nedu_ce_`i' = edu_ce_`i'
-}
-collapse (mean)edu_ce_* (sum)Nedu_ce_*, by(year)
-save education_3_0.dta, replace
-
-forvalue i =1/8{
-label variable edu_ce_`i' "Frequency"
-label variable Nedu_ce_`i' "# of obs"
-#delimit ;
-	twoway 
-	(bar Nedu_ce_`i' year, color(ltgrey) fintensity(inten10) lcolor(white) lwidth(0))
-	(line edu_ce_`i' year, yaxis(2)) , 
-	title("Education") 
-	subtitle("Trend of Education Level, Edu. level = `i'")
-	saving(..\Graph\3_0_`i'.gph, replace);
-#delimit cr
-graph export ..\Graph\3_0_`i'.png, replace
-}
-
 *3.1
 use education.dta, clear
 collapse (mean)edu_ce_N_*, by(year)
