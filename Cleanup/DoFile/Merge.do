@@ -36,7 +36,10 @@ foreach f of local file {
 	capture import excel "`f'", sheet("Individuals") firstrow allstring 
 	sca _rc1 = _rc
 	capture import excel "`f'", sheet("Individual") firstrow allstring 
-	if !(_rc) | !(_rc1){ //For more than one sheet: Sheet "Individuals"
+	sca _rc2 = _rc
+	capture import excel "`f'", sheet("leader") firstrow allstring 
+	sca _rc3 = _rc
+	if !(_rc1) | !(_rc2)| !(_rc3){ //For more than one sheet: Sheet "Individuals"
 
 		capture drop if cen ==""
 		capture drop if year ==""

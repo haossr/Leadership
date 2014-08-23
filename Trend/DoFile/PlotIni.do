@@ -2,6 +2,7 @@
 cd ..\WorkingData
 
 use ..\RawData\Leadership.dta, replace
+replace OECD = 0 if OECD ==.
 drop if year<1950
 drop if year>2010
 save Leadership.dta, replace
@@ -96,5 +97,104 @@ gen weight_noecd = weight*(1-OECD)
 label variable weight_oecd "OECD countries"
 label variable weight_noecd "Non-OECD countries"
 
-
 save education.dta, replace
+
+
+************************************************************************
+*************** 3. Age and gender
+************************************************************************
+use Leadership.dta, clear
+gen age = year - birthyear_ce
+gen age_firstterm = age
+gen age_left = age
+bysort PIPECode cen birthyear_ce (year): replace age_firstterm = age_firstterm[1] if _n!=1
+bysort PIPECode cen birthyear_ce (year): replace age_left = age_left[_N] if _n!=_N
+
+*check
+/*
+sort PIPECode cen year
+gen temp = age==age1
+tab temp firstterm_ce
+bro countryn PIPECode cen year birthyear_ce age* length_ce source* filename if length_ce==1 & temp==0
+*/
+
+gen age_d = age if democracy
+gen age_nd = age if !democracy
+*label variable age_d "Democratic countries"
+*label variable age_nd "Non-democratic countries"
+
+gen age_oecd = age if OECD
+gen age_noecd = age if !OECD
+*label variable age_oecd "OECD countries"
+*label variable age_noecd "Non-OECD countries"
+
+gen age_firstterm_d = age_firstterm if democracy
+gen age_firstterm_nd = age_firstterm if !democracy
+*label variable age_firstterm_d "Democratic countries"
+*label variable age_firstterm_nd "Non-democratic countries"
+
+gen age_firstterm_oecd = age_firstterm if OECD
+gen age_firstterm_noecd = age_firstterm if !OECD
+*label variable age_firstterm_oecd "OECD countries"
+*label variable age_firstterm_noecd "Non-OECD countries"
+
+gen age_left_d = age_left if democracy
+gen age_left_nd = age_left if !democracy
+*label variable age_left_d "Democratic countries"
+*label variable age_left_nd "Non-democratic countries"
+
+gen age_left_oecd = age_left if OECD
+gen age_left_noecd = age_left if !OECD
+*label variable age_left_oecd "OECD countries"
+*label variable age_left_noecd "Non-OECD countries"
+
+gen gender_d = gender_ce if democracy
+gen gender_nd = gender_ce if !democracy
+*label variable gender_d "Democratic countries"
+*label variable gender_nd "Non-democratic countries"
+
+gen gender_oecd = gender_ce if OECD
+gen gender_noecd = gender_ce if !OECD
+*label variable gender_oecd "OECD countries"
+*label variable gender_noecd "Non-OECD countries"
+
+
+foreach var of varlist age*{
+	gen se`var' = `var'
+}
+
+collapse (mean)gender* (mean)age* (semean)seage*, by(year)
+label variable age "Age overall"
+label variable gender_ce "Gender overall"
+label variable age_d "Democratic countries"
+label variable age_nd "Non-democratic countries"
+label variable age_oecd "OECD countries"
+label variable age_noecd "Non-OECD countries"
+label variable age_firstterm_d "Democratic countries"
+label variable age_firstterm_nd "Non-democratic countries"
+label variable age_firstterm_oecd "OECD countries"
+label variable age_firstterm_noecd "Non-OECD countries"
+label variable gender_d "Democratic countries"
+label variable gender_nd "Non-democratic countries"
+label variable gender_oecd "OECD countries"
+label variable gender_noecd "Non-OECD countries"
+label variable age_left_d "Democratic countries"
+label variable age_left_nd "Non-democratic countries"
+label variable age_left_oecd "OECD countries"
+label variable age_left_noecd "Non-OECD countries"
+*quietly dscribe age_firstterm_* age_left_*
+*local myvars3 
+quietly ds age_firstterm_* age_left_*
+local boundvar `r(varlist)'
+foreach var in `boundvar'{
+	gen h`var' = `var' + 1.96 * se`var'
+	gen l`var' = `var' - 1.96 * se`var'
+}
+
+/*
+foreach var of varlist {
+	gen h`var' = `var' + 1.96 * se`var'
+	gen l`var' = `var' - 1.96 * se`var'
+}
+*/
+save age_gender.dta, replace

@@ -1,21 +1,22 @@
 drop _all
 clear all
 set more off
-set trace on
+set trace off
 sca testing = 0
 
-if c(username)== "Hari"{
-	cd D:\GitHub\Leadership\Merge\DoFile
+if c(username)== "Hari"|c(username)=="Leonard"{
+	cd D:\GitHub\Leadership\Cleanup\DoFile
 }
 else {
-cd E:\GitHub\Leadership\Merge\DoFile
-}*cd E:\GitHub\Leadership\Cleanup\DoFile
+cd E:\GitHub\Leadership\Cleanup\DoFile
+}
+*cd E:\GitHub\Leadership\Cleanup\DoFile
 
 **********************************************************************
 *Manual Manipulating
-**Data -55 El Salvador-SJN: cen->countryn
-**Data - 84 Isreal - YML: 隐藏了三列错误信息，导入时没发现，我去年买了个登山包
-**Data - 86 Jordan - LC: 第三行 year->1953
+**Data -55 El Salvador-SJN.xlsx: cen->countryn
+**Data - 84 Isreal - YML.xlsx: 隐藏了三列错误信息，导入时没发现，我去年买了个登山包
+**Data - 86 Jordan - LC.xlsx: 第三行 year->1953
 **清除格式、超链接：  
 *			data- 103 bulgaria-sjn.xlsx 
 *      data-104 czechoslovakia-sjn.xlsx 
@@ -25,11 +26,21 @@ cd E:\GitHub\Leadership\Merge\DoFile
 *                data-79 china-sjn.xlsx
 *
 **2014-8-20
-**Data -55 El Salvador-SJN-revised: cen->countryn, 还是错，无语凝噎 
-**Data - 59 Honduras  - YML: countryn->Honduras, country->59
-**Data - 158 Cequatorial guinea- LC- -> Data - 158 equatorial guinea- LC-
+**Data -55 El Salvador-SJN-revised.xlsx: cen->countryn, 还是错，无语凝噎 
+**Data - 59 Honduras  - YML.xlsx: countryn->Honduras, country->59
+**Data - 158 Cequatorial guinea- LC-.xlsx:-> Data - 158 equatorial guinea- LC-
 **Data - 83 iraq- YML： no constituion nor elective law before 1958-[blank]
 
+**2014-8-23
+**Data - 119 Poland - SH.xlsx: firstterm_ce <-->Nterm
+**Data - 167 Lebanon.xlsx: firstterm_ce <-->Nterm
+**Data - 25 Madagascar - SH.xlsx: length_ce = 2(year == 1995); length_ce = 3(year==1996)
+**Data - 87 Panama - LC-.xlsx: length_ce = 2(year==2010)
+**Data - 67 Bolivia - SH.xlex: length_ce = 2(year == 1966); length_ce = 3(year==1967); length_ce = 4(year==1968)
+**Data - 90 Mongolia - SH.xlsx: length_ce = 2(year == 1951); length_ce = 3(year==1952)
+**Data - 87 ZhangTianhong1.xlsx: length_ce = 2(year==1955, PIPECode = 96)
+**Data - 87 ZhangTianhong1.xlsx: length_ce = 2:8(year==2007:2013, PIPECode = 96)
+**Data - 167 Lebanon - SH.xlsx: length_ce = 2(year == 1998); length_ce = 3(year==1999)
 **********************************************************************
 
 **********************************************************************
