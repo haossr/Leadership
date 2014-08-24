@@ -4,6 +4,9 @@ Leadership Project
 
 Thus we have this project to explore each scenario where we might learn something from these great leaders' personal experience.（**通过学习长者的人生经验涨姿势**）
 
+![exp_ce_centralyear_byd](https://github.com/Hari-Sheng/Leadership/blob/master/Documents/5_6_exp_ce_centralyear_byd.png)
+<SUP>\*</SUP> The above chart show us how the leaders' experience in central government(measured in years) keep rising in non-democratic countries(**我是身经百战了！**).
+
 This is for my R.A. Job@NSD, Peking Univ. This project is led by  [Prof.Tianyang Xi](http://www.xitianyang.com/). We construct a dataset covering the individual characters of Leaders, and start to do some *empirical* research on it[<SUP>\*</SUP>](#Com) .
 
 **Fields**: Political Economics
@@ -25,7 +28,7 @@ This is for my R.A. Job@NSD, Peking Univ. This project is led by  [Prof.Tianyang
 	- [x] Education
 		- [ ] CIS countries: 3.8, 3.12
 	- [x] Age & gender
-	- [ ] Experience
+	- [x] Experience
 		- [ ] length_ce: 5.2, 5.3, 5.4
 	- [ ] Correlation analysis
 - [ ] Regression
