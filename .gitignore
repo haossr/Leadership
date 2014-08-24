@@ -67,9 +67,12 @@ Icon
 #BaiduYun related files
 *.baiduyun.uploading.cfg
 
-$Stata graph exported
+#Stata graph exported
 *.gph
 *.png
+
+#Counter of coding lines
+github-stats.py
 
 # =========================
 # CodingFree Directories

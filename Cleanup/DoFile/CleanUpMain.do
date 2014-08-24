@@ -41,6 +41,9 @@ cd E:\GitHub\Leadership\Cleanup\DoFile
 **Data - 87 ZhangTianhong1.xlsx: length_ce = 2(year==1955, PIPECode = 96)
 **Data - 87 ZhangTianhong1.xlsx: length_ce = 2:8(year==2007:2013, PIPECode = 96)
 **Data - 167 Lebanon - SH.xlsx: length_ce = 2(year == 1998); length_ce = 3(year==1999)
+
+**2014-8-24
+**Data - 9 central africa - YML: exp_ce_centralyear = 20(year = 1982); exp_ce_militaryyear = 26(year = 1982)
 **********************************************************************
 
 **********************************************************************

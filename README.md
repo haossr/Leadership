@@ -24,8 +24,9 @@ This is for my R.A. Job@NSD, Peking Univ. This project is led by  [Prof.Tianyang
 	- [x] Selection mechanism / barrier to entry
 	- [x] Education
 		- [ ] CIS countries: 3.8, 3.12
-	- [ ] Age & gender
+	- [x] Age & gender
 	- [ ] Experience
+		- [ ] length_ce: 5.2, 5.3, 5.4
 	- [ ] Correlation analysis
 - [ ] Regression
 

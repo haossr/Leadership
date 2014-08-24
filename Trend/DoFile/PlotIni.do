@@ -198,3 +198,18 @@ foreach var of varlist {
 }
 */
 save age_gender.dta, replace
+
+************************************************************************
+*************** 4. Experience
+************************************************************************
+use Leadership.dta, clear
+keep Nterm_ce length_ce exp_ce_public-exp_ce_manageryear year cen PIPECode OECD democracy
+ds exp_ce_public - exp_ce_manager
+local dummy `r(varlist)'
+ds exp_ce_*year
+local dummyyear `r(varlist)'
+disp "`dummyyear'"
+local dummy `dummy'-`dummyyear'
+disp "`dummy'"
+lookfor year
+save experience.dta, replace
