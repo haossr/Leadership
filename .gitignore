@@ -70,6 +70,7 @@ Icon
 #Stata graph exported
 *.gph
 *.png
+!/Documents/*.png
 
 #Counter of coding lines
 github-stats.py
