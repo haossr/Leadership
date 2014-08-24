@@ -1,5 +1,5 @@
-
 cd ..\WorkingData
+set trace off
 
 use ..\RawData\Leadership.dta, replace
 replace OECD = 0 if OECD ==.
@@ -203,13 +203,64 @@ save age_gender.dta, replace
 *************** 4. Experience
 ************************************************************************
 use Leadership.dta, clear
-keep Nterm_ce length_ce exp_ce_public-exp_ce_manageryear year cen PIPECode OECD democracy
-ds exp_ce_public - exp_ce_manager
-local dummy `r(varlist)'
-ds exp_ce_*year
-local dummyyear `r(varlist)'
-disp "`dummyyear'"
-local dummy `dummy'-`dummyyear'
+
+gen Nterm_d = Nterm_ce if democracy
+gen Nterm_nd = Nterm_ce if !democracy
+foreach var in Nterm_d Nterm_nd {
+	gen `var'_par = `var' if title_ce==2
+	gen `var'_pre = `var' if title_ce==3
+}
+
+
+
+local dummyyear 
+local dummy 
+foreach var of varlist exp_ce_public-exp_ce_manageryear{
+	if strpos("`var'","year"){
+	local dummyyear = "`dummyyear'  `var'"
+	}
+	else{
+	local dummy = "`dummy' `var'"
+	}
+}
+*codebook `dummy'
+*codebook `dummyyear'
 disp "`dummy'"
-lookfor year
+disp "`dummyyear'"
+
+foreach var of varlist `dummy' `dummyyear' {
+	gen `var'_d = `var' if democracy
+	gen `var'_nd = `var' if !democracy
+	gen `var'_oecd = `var' if OECD
+	gen `var'_noecd = `var' if !OECD
+}
+
+ds exp*d
+foreach var of varlist exp*d{
+	gen se`var' = `var'
+}
+
+ds se*d
+collapse (mean)exp*d (mean)Nterm* (semean)se*d, by(year)
+
+foreach var of varlist exp*d{
+	gen h`var' = `var' + 1.96 * se`var'
+	gen l`var' = `var' - 1.96 * se`var'
+}
+
+foreach var of varlist exp*d Nterm*{
+	if strpos("`var'", "_d"){
+	label variable `var' "Democratic countries"
+	}
+	if strpos("`var'", "_nd"){
+	label variable `var' "Non-democratic countries"
+	}
+	if strpos("`var'", "_oecd"){
+	label variable `var' "OECD countries"
+	}
+	if strpos("`var'", "_noecd"){
+	label variable `var' "Non-OECD countries"
+	}
+}
+
 save experience.dta, replace

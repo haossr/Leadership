@@ -1,133 +1,101 @@
 cd ..\WorkingData\
-
+set trace off
 ************************************************************************
 *************** Trend: Age and gender
 ************************************************************************
+local dummy exp_ce_public exp_ce_vice exp_ce_minister exp_ce_legis exp_ce_governor exp_ce_Ngovernor exp_ce_party exp_ce_central exp_ce_military exp_ce_private exp_ce_manager
+local dummyyear exp_ce_publicyear  exp_ce_viceyear  exp_ce_ministeryear  exp_ce_legisyear  exp_ce_governoryear  exp_ce_leglocalyear  exp_ce_partyyear  exp_ce_centralyear  exp_ce_militaryyear  exp_ce_privateyear  exp_ce_manageryear
+local subgroup _d _nd _oecd _noecd
+
 *5.1
-use age_gender, clear
-keep age age_d age_nd year
-#delimit ;
-	twoway (line age* year), 
-	title("Age and gender") 
-	subtitle("Trend of age");
-#delimit cr
-graph export ..\Graph\4_1.png, replace
-
-
-*4.2
-use age_gender, clear
-keep age age_oecd age_noecd year
-#delimit ;
-	twoway (line age* year), 
-	title("Age and gender") 
-	subtitle("Trend of age");
-#delimit cr
-graph export ..\Graph\4_2.png, replace
-
-
-*4.3
-use age_gender, clear
-keep hage_firstterm_d hage_firstterm_nd age_firstterm_d age_firstterm_nd lage_firstterm_d lage_firstterm_nd year
-#delimit ;
-	twoway (rarea lage_firstterm_d hage_firstterm_d year, sort bcolor(gs14))
-	(line age_firstterm_d year),
-	title("Age and gender") 
-	subtitle("Trend of age, upon taking office")
-	legend(label (1 "%95 CI")) ;
-#delimit cr
-graph export ..\Graph\4_3_1.png, replace
-#delimit ;
-	twoway (rarea lage_firstterm_nd hage_firstterm_nd year, sort bcolor(gs14))
-	(line age_firstterm_nd year),
-	title("Age and gender") 
-	subtitle("Trend of age, upon taking office")
-	legend(label (1 "%95 CI")) ;
-#delimit cr
-graph export ..\Graph\4_3_2.png, replace
-
-
-*4.4
-use age_gender, clear
-keep hage_firstterm_oecd hage_firstterm_noecd age_firstterm_oecd age_firstterm_noecd lage_firstterm_oecd lage_firstterm_noecd year
-#delimit ;
-	twoway (rarea lage_firstterm_oecd hage_firstterm_oecd year, sort bcolor(gs14))
-	(line age_firstterm_oecd year),
-	title("Age and gender") 
-	subtitle("Trend of age, upon taking office")
-	legend(label (1 "%95 CI")) ;
-#delimit cr
-graph export ..\Graph\4_4_1.png, replace
+use experience, clear
 
 #delimit ;
-	twoway (rarea lage_firstterm_noecd hage_firstterm_noecd year, sort bcolor(gs14))
-	(line age_firstterm_noecd year),
-	title("Age and gender") 
-	subtitle("Trend of age, upon taking office")
-	legend(label (1 "%95 CI")) ;
-#delimit cr
-graph export ..\Graph\4_4_2.png, replace
+	graph bar (mean)Nterm_d_pre Nterm_nd_pre,
 
-*4.5
-use age_gender, clear
-keep hage_left_d hage_left_nd age_left_d age_left_nd lage_left_d lage_left_nd year
-#delimit ;
-	twoway (rarea lage_left_d hage_left_d year, sort bcolor(gs14))
-	(line age_left_d year),
-	title("Age and gender") 
-	subtitle("Trend of age, upon leaving office")
-	legend(label (1 "%95 CI")) ;
+	legend(label (1 "Democratic countries") label (2 "Non-democratic countries"))
+	t2title("conditional on presidentialism");
 #delimit cr
-graph export ..\Graph\4_5_1.png, replace
+graph save ..\Graph\5_1_1.gph, replace
 
 #delimit ;
-	twoway (rarea lage_left_nd hage_left_nd year, sort bcolor(gs14))
-	(line age_left_nd year),
-	title("Age and gender") 
-	subtitle("Trend of age, upon leaving office")
-	legend(label (1 "%95 CI")) ;
+	graph bar (mean)Nterm_d_par Nterm_nd_par,
+	legend(label (1 "Democratic countries") label (2 "Non-democratic countries"))
+	t2title("conditional on parliamentary");
 #delimit cr
-graph export ..\Graph\4_5_2.png, replace
-
-
-*4.6
-use age_gender, clear
-keep hage_left_oecd hage_left_noecd age_left_oecd age_left_noecd lage_left_oecd lage_left_noecd year
-#delimit ;
-	twoway (rarea lage_left_oecd hage_left_oecd year, sort bcolor(gs14))
-	(line age_left_oecd year),
-	title("Age and gender") 
-	subtitle("Trend of age, upon leaving office")
-	legend(label (1 "%95 CI")) ;
-#delimit cr
-graph export ..\Graph\4_6_1.png, replace
+graph save ..\Graph\5_1_2.gph, replace
 
 #delimit ;
-	twoway (rarea lage_left_noecd hage_left_noecd year, sort bcolor(gs14))
-	(line age_left_noecd year),
-	title("Age and gender") 
-	subtitle("Trend of age, upon leaving office")
-	legend(label (1 "%95 CI")) ;
+graph combine  ..\Graph\5_1_1.gph ..\Graph\5_1_2.gph,
+	ycommon
+	title("Experience")
+	subtitle("Number of terms");
 #delimit cr
-graph export ..\Graph\4_6_2.png, replace
+graph display, ysize(8) xsize(20)
+graph export ..\Graph\5_1.png, height(345) width(948) replace
 
-*4.7
-use age_gender, clear
-keep gender_d gender_nd year
-#delimit ;
-	twoway (line gender* year), 
-	title("Age and gender") 
-	subtitle("Female ratio");
-#delimit cr
-graph export ..\Graph\4_7.png, replace
+*5.5
+use experience, clear
 
+foreach var of new `dummy'{
+	foreach suffix in `subgroup'{ 
+		local l`var'`suffix': variable label `var'`suffix'
+		#delimit ;
+			twoway (rarea l`var'`suffix' h`var'`suffix' year, sort bcolor(gs14))
+			(line `var'`suffix' year),
+			t2title("`l`var'`suffix''")
+			legend(label (1 "%95 CI")) ;
+		#delimit cr
+		
+		graph save ..\Graph\5_5_`var'`suffix'.gph, replace
+	}
+	#delimit ;
+	graph combine ..\Graph\5_5_`var'_d.gph ..\Graph\5_5_`var'_nd.gph,
+		ycommon
+		title("Experience") 
+		subtitle("Trend of variable: `var'");
+	#delimit cr
+	graph display, ysize(8) xsize(20)
+	graph export ..\Graph\5_5_`var'_byd.png, height(345) width(948) replace
+	
+	#delimit ;
+	graph combine ..\Graph\5_5_`var'_oecd.gph ..\Graph\5_5_`var'_noecd.gph,
+		ycommon
+		title("Experience") 
+		subtitle("Trend of variable: `var'");
+	#delimit cr
+	graph display, ysize(8) xsize(20)
+	graph export ..\Graph\5_5_`var'_byOECD.png, height(345) width(948) replace
+	}
 
-*4.8
-use age_gender, clear
-keep gender_oecd gender_noecd year
-#delimit ;
-	twoway (line gender* year), 
-	title("Age and gender") 
-	subtitle("Female ratio");
-#delimit cr
-graph export ..\Graph\4_8.png, replace
-
+*5.6
+foreach var of new `dummyyear'{
+	foreach suffix in `subgroup'{ 
+		local l`var'`suffix': variable label `var'`suffix'
+		#delimit ;
+			twoway (rarea l`var'`suffix' h`var'`suffix' year, sort bcolor(gs14))
+			(line `var'`suffix' year),
+			t2title("`l`var'`suffix''")
+			legend(label (1 "%95 CI")) ;
+		#delimit cr
+		
+		graph save ..\Graph\5_6_`var'`suffix'.gph, replace
+	}
+	#delimit ;
+	graph combine ..\Graph\5_6_`var'_d.gph ..\Graph\5_5_`var'_nd.gph,
+		ycommon
+		title("Experience") 
+		subtitle("Trend of variable: `var'");
+	#delimit cr
+	graph display, ysize(8) xsize(20)
+	graph export ..\Graph\5_6_`var'_byd.png, height(345) width(948) replace
+	
+	#delimit ;
+	graph combine ..\Graph\5_6_`var'_oecd.gph ..\Graph\5_6_`var'_noecd.gph,
+		ycommon
+		title("Experience") 
+		subtitle("Trend of variable: `var'");
+	#delimit cr
+	graph display, ysize(8) xsize(20)
+	graph export ..\Graph\5_6_`var'_byOECD.png, height(345) width(948) replace
+}
