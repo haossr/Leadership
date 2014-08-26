@@ -34,6 +34,75 @@ graph combine  ..\Graph\5_1_1.gph ..\Graph\5_1_2.gph,
 graph display, ysize(8) xsize(20)
 graph export ..\Graph\5_1.png, height(345) width(948) replace
 
+
+*5.2
+use experience, clear
+#delimit ;
+	twoway (rarea llength_ce hlength_ce year, sort bcolor(gs14))
+	(line length_ce year),
+	title("Experience")
+	subtitle("In office year")
+	legend(label (1 "%95 CI")) ;
+#delimit cr
+graph export ..\Graph\5_2.png, replace
+
+*5.3
+use experience, clear
+#delimit ;
+	twoway (rarea llength_ce_d hlength_ce_d year, sort bcolor(gs14))
+	(line length_ce_d year),
+	t2title("Democratic countries")
+	legend(label (1 "%95 CI")) ;
+#delimit cr
+graph save ..\Graph\5_3_1.gph, replace
+
+#delimit ;
+	twoway (rarea llength_ce_nd hlength_ce_nd year, sort bcolor(gs14))
+	(line length_ce_nd year),
+	t2title("Non-democratic countries")
+	legend(label (1 "%95 CI")) ;
+#delimit cr
+graph save ..\Graph\5_3_2.gph, replace
+
+#delimit ;
+graph combine  ..\Graph\5_3_1.gph ..\Graph\5_3_2.gph,
+	ycommon
+	title("Experience")
+	subtitle("In office year");
+#delimit cr
+graph export ..\Graph\5_3.png, height(345) width(948) replace
+
+
+
+*5.4
+use experience, clear
+#delimit ;
+	twoway (rarea llength_ce_oecd hlength_ce_oecd year, sort bcolor(gs14))
+	(line length_ce_oecd year),
+	t2title("OECD countries")
+	legend(label (1 "%95 CI")) ;
+#delimit cr
+graph save ..\Graph\5_4_1.gph, replace
+
+#delimit ;
+	twoway (rarea llength_ce_noecd hlength_ce_noecd year, sort bcolor(gs14))
+	(line length_ce_noecd year),
+	t2title("Non-OECD countries")
+	legend(label (1 "%95 CI")) ;
+#delimit cr
+graph save ..\Graph\5_4_2.gph, replace
+
+
+#delimit ;
+graph combine  ..\Graph\5_4_1.gph ..\Graph\5_4_2.gph,
+	ycommon
+	title("Experience")
+	subtitle("In office year");
+#delimit cr
+graph export ..\Graph\5_4.png, height(345) width(948) replace
+
+
+/*
 *5.5
 use experience, clear
 

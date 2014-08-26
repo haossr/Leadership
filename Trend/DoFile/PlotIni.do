@@ -204,6 +204,14 @@ save age_gender.dta, replace
 ************************************************************************
 use Leadership.dta, clear
 
+*length_ce
+gen length_ce_d = length_ce if democracy
+gen length_ce_nd = length_ce if !democracy
+
+gen length_ce_oecd = length_ce if OECD
+gen length_ce_noecd = length_ce if !OECD
+
+*Nterm
 gen Nterm_d = Nterm_ce if democracy
 gen Nterm_nd = Nterm_ce if !democracy
 foreach var in Nterm_d Nterm_nd {
@@ -212,7 +220,7 @@ foreach var in Nterm_d Nterm_nd {
 }
 
 
-
+*dummy variable and dummy year variable
 local dummyyear 
 local dummy 
 foreach var of varlist exp_ce_public-exp_ce_manageryear{
@@ -223,8 +231,7 @@ foreach var of varlist exp_ce_public-exp_ce_manageryear{
 	local dummy = "`dummy' `var'"
 	}
 }
-*codebook `dummy'
-*codebook `dummyyear'
+
 disp "`dummy'"
 disp "`dummyyear'"
 
@@ -236,19 +243,20 @@ foreach var of varlist `dummy' `dummyyear' {
 }
 
 ds exp*d
-foreach var of varlist exp*d{
+foreach var of varlist exp*d length*{
 	gen se`var' = `var'
 }
 
 ds se*d
-collapse (mean)exp*d (mean)Nterm* (semean)se*d, by(year)
+capture drop sequence
+collapse (mean)exp*d (mean)Nterm* (mean)length* (semean)se*, by(year)
 
-foreach var of varlist exp*d{
+foreach var of varlist exp*d length*{
 	gen h`var' = `var' + 1.96 * se`var'
 	gen l`var' = `var' - 1.96 * se`var'
 }
 
-foreach var of varlist exp*d Nterm*{
+foreach var of varlist exp*d Nterm* length*d{
 	if strpos("`var'", "_d"){
 	label variable `var' "Democratic countries"
 	}
@@ -262,5 +270,6 @@ foreach var of varlist exp*d Nterm*{
 	label variable `var' "Non-OECD countries"
 	}
 }
+label variable length_ce "Overall"
 
 save experience.dta, replace

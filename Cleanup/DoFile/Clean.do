@@ -41,7 +41,7 @@ foreach var of varlist _all{
 	replace `var'="." if `var' ==" "	
 	replace `var'="." if `var' =="/"	
 	replace `var'="." if `var' =="-"	
-	
+	replace `var'="." if `var' =="¡¢"
 	capture replace `var' = trim(`var')
 	*capture replace `var' = itrim(`var')
 	*capture replace `var' = rtrim(`var')

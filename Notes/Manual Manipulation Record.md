@@ -1,5 +1,6 @@
 Manual Manipulation Record
 =======
+<SUP>\*</SUP>This file records change that has been manually made by Hari S. but not original author.
 
 ###2014-8-14
 - Data -55 El Salvador-SJN.xlsx: cen->countryn
