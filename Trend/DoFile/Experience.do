@@ -102,7 +102,7 @@ graph combine  ..\Graph\5_4_1.gph ..\Graph\5_4_2.gph,
 graph export ..\Graph\5_4.png, height(345) width(948) replace
 
 
-/*
+
 *5.5
 use experience, clear
 
