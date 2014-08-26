@@ -139,6 +139,6 @@ foreach var of var err_excel*{
 ********6.error: length_ce
 ************************************************************
 replace length_ce = length_ce + 1 if source ==6
-bysort country cen birthyear_ce: replace length_ce == length_ce[1]+_n-1 if source==3 & _n>1
+bysort country cen birthyear_ce: replace length_ce = length_ce[1]+_n-1 if source==3 & _n>1
 
 drop err_excel*
