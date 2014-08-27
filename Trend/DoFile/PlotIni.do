@@ -273,3 +273,18 @@ foreach var of varlist exp*d Nterm* length*d{
 label variable length_ce "Overall"
 
 save experience.dta, replace
+
+
+************************************************************************
+*************** 5. Corelation
+************************************************************************
+use Leadership.dta, clear
+
+*age
+gen age = year - birthyear_ce
+
+*eligibility(missing if one of elig_* mising)
+egen eligibility = rowtotal(elig_*)
+egen eligmiss = rowmiss(elig_*)
+replace eligibility = . if eligmiss>0
+save correlation.dta, replace
