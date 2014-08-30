@@ -1,6 +1,6 @@
 Manual Manipulation Record
 =======
-<SUP>\*</SUP>This file records change that has been manually made by Hari S. but not original author.
+<SUP>\*</SUP>This file records change that has been manually made by Hao S. but not the original author.
 
 ###2014-8-14
 - Data -55 El Salvador-SJN.xlsx: cen->countryn
@@ -33,3 +33,6 @@ Manual Manipulation Record
 
 ###2014-8-24
 - Data - 9 central africa - YML: exp_ce_centralyear = 20(year = 1982); exp_ce_militaryyear = 26(year = 1982)
+
+###2014-8-30
+- log-revised Zhangtianhong: drop the extra headers
