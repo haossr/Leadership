@@ -53,8 +53,16 @@ tab _merge
 drop _merge
 
 rename Year year
-save Maddison.dta, clear
+rename id MaddisonCode
+sort MaddisonCode year
+save Maddison.dta, replace
 
 **********************************************************************
 **************  b. constructing
 **********************************************************************
+use Leadership_4.dta, clear
+drop if year>2008
+sort MaddisonCode year
+merge MaddisonCode year using Maddison.dta
+tab _merge
+save Leadership_5.dta, replace
