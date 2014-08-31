@@ -14,26 +14,7 @@ This is for my R.A. Job@NSD, Peking Univ. This project is led by  [Prof.Tianyang
 **Dataset Coverage**: The data set is intended to cover all countries that were or would become independent at any time after 1917, each from the inception of the first representative institutions or from the date of independence, whichever comes first, through 2010.
 
 
-
-- [x] Cleanup
-- [x] Merge
-	- [x] PIPE
-	- [x] PWT80
-		- [ ] Czechoslovakia, yugoslavia, yemensouth, germany
-	- [x] ddrevisted
-		- [ ] 6% unmatched
-	- [x] Archigos
-- [ ] Basic Trend Table
-	- [x] Selection mechanism / barrier to entry
-	- [x] Education
-		- [ ] CIS countries: 3.8, 3.12
-	- [x] Age & gender
-	- [x] Experience
-		- [x] length_ce: 5.2, 5.3, 5.4
-	- [ ] Correlation analysis
-- [ ] Regression
-
-
+<SUP>\*</SUP>For progress report and check list, please refer to [*CheckList.md*](https://github.com/Hari-Sheng/Leadership/blob/master/Notes/CheckList.md)
 1.Cleanup
 ----------
 See the [*Cleanup*](https://github.com/Hari-Sheng/Leadership/tree/master/Cleanup/DoFile) directory. The main **Stata** do-file is [*CleanUpMain.do*](https://github.com/Hari-Sheng/Leadership/blob/master/Cleanup/DoFile/CleanUpMain.do).
