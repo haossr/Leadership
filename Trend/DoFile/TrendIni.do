@@ -269,7 +269,7 @@ foreach var of varlist exp*d Nterm* length*d{
 	if strpos("`var'", "_noecd"){
 	label variable `var' "Non-OECD countries"
 	}
-}
+}	
 label variable length_ce "Overall"
 
 save experience.dta, replace
@@ -279,6 +279,14 @@ save experience.dta, replace
 *************** 5. Corelation
 ************************************************************************
 use Leadership.dta, clear
+*growth rate
+drop if PIPECode==.
+tsset PIPECode year, yearly
+gen gdp_d = D.GDP/L.GDP
+
+*a1991
+gen a1991 = 1
+replace a1991 = 0 if year <=1991
 
 *age
 gen age = year - birthyear_ce
