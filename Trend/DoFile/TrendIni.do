@@ -1,7 +1,7 @@
 cd ..\WorkingData
 set trace off
 
-use ..\RawData\Leadership.dta, replace
+use ..\RawData\Leadership.dta, clear
 replace OECD = 0 if OECD ==.
 drop if year<1950
 drop if year>2010
