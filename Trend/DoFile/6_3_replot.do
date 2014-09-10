@@ -125,7 +125,7 @@ foreach var of varlist `xvar'{
 	local r2q: display %5.4f e(r2)
 	#delimit ;
 	twoway
-	(scatter gdp_d `var')
+	(scatter gdp_d `var',msize(vsmall))
 	(lfit gdp_d `var')
 	(qfit gdp_d `var') if !a1991 & !democracy,
 	title("Growth rate of GDP/`l`var''") 
