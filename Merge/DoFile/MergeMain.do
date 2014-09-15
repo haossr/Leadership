@@ -1,7 +1,7 @@
 drop _all
 clear all
 set more off
-set trace on
+set trace off
 sca testing = 1
 if c(username)== "Leonard"{
 	cd D:\GitHub\Leadership\Merge\DoFile
@@ -63,3 +63,4 @@ do MaddisonMerge.do
 **********************************************************************
 save ..\..\Trend\RawData\Leadership.dta, replace
 save ..\..\Regression\RawData\Leadership.dta, replace
+save ..\..\Television\RawData\Leadership.dta, replace
