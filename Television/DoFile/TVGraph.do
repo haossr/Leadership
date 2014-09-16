@@ -52,3 +52,17 @@ foreach var of varlist age age_firstterm age_left{
 	graph export ..\Graph\graph_`var'_`suffix'.png, replace
 	}
 }
+
+
+use Leader_TV, clear
+local divide 1980
+gen before = 1
+replace before = 0 if year > `divide'
+replace before = 1 if year <= `divide'
+gen parlib = parli*before
+gen parlia = parli*!before
+gen presib = presi*before
+gen presia = presi*!before
+collapse (mean)parlia presia parlib presib, by(country before)
+scatter parlia parlib
+scatter presia presib
