@@ -1,7 +1,7 @@
 *set more off
 *set trace on
 *clear all
-
+sca imputation = 0
 cd ..\WorkingData
 use Leadership_merged.dta,clear
 *set trace on
@@ -66,6 +66,8 @@ capture replace ocu_ce_sector = exp_ce_sector if expce_ce_sector!="."
 ************************************************************
 set varabbrev off //incase ambiguous abbreviation in `Boole'
 destring _all, replace
+if imputation{
+
 /*local Boole ""
 foreach var of varlist _all{
 	local tp`var': type `var'
@@ -135,10 +137,12 @@ foreach var of var `var2check'{
 foreach var of var err_excel*{
 	capture tab `var'
 }
+drop err_excel*
+}
 ************************************************************
 ********6.error: length_ce
 ************************************************************
 replace length_ce = length_ce + 1 if source ==6
 bysort country cen birthyear_ce: replace length_ce = length_ce[1]+_n-1 if source==3 & _n>1
 
-drop err_excel*
+
