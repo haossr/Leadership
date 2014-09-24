@@ -145,4 +145,7 @@ drop err_excel*
 replace length_ce = length_ce + 1 if source ==6
 bysort country cen birthyear_ce: replace length_ce = length_ce[1]+_n-1 if source==3 & _n>1
 
-
+************************************************************
+********6.error: gender_ce
+************************************************************
+replace gender_ce =0 if source ==3 & gender_ce ==1
