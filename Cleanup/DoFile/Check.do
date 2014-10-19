@@ -10,36 +10,7 @@ use Leadership.dta, clear
 cd ..\WorkingData
 
 use Leadership.dta, clear
-noisily list countryn year exp_ce_central exp_ce_centralyear if exp_ce_central>1&exp_ce_central!=.
 *keep if sourcen == "YML"
-************************************************************
-********1.dummy variable: exp_ce*
-************************************************************
-local dummyyear 
-local dummy exp_ce_public exp_ce_vice exp_ce_minister exp_ce_legis exp_ce_governor exp_ce_central exp_ce_party exp_ce_private exp_ce_military exp_ce_manager
-foreach var of varlist exp_ce_public-exp_ce_manageryear{
-	if strpos("`var'","year"){
-	local dummyyear = "`dummyyear'  `var'"
-	}
-	else{
-	local dummy = "`dummy' `var'"
-	}
-}
-
-foreach var of varlist `dummy' {
-	if "`var'" == "exp_ce_Ngovernor"{
-		continue
-	}
-	noisily list countryn year `var' `var'year sourcen if (`var'>0 & `var'!=.) & (`var'year==0), ab(33)
-	noisily list countryn year `var' `var'year sourcen if (`var'year>0 &`var'year!=.) & (`var'==0|`var'==.), ab(33)
-	/*
-	if _rc{
-		 noisily list countryn year `var' sourcen if `var'>1 &`var'!=., ab(33)
-	}
-	*/
-}
-
-
 ************************************************************
 *********From Prof.XI
 ************************************************************
@@ -76,3 +47,67 @@ list countryn year exp_ce_private exp_ce_privateyear sourcen if exp_ce_private==
 list countryn year exp_ce_private exp_ce_privateyear sourcen if exp_ce_private>0&exp_ce_privateyear<1
 list countryn year exp_ce_manager exp_ce_manageryear sourcen if exp_ce_manager==0&exp_ce_manageryear>0
 list countryn year exp_ce_manager exp_ce_manageryear sourcen if exp_ce_manager>0&exp_ce_manageryear<1
+
+************************************************************
+********1.dummy variable: exp_ce* and exp_ce*year
+************************************************************
+*local dummyyear 
+local dummy exp_ce_public exp_ce_vice exp_ce_minister exp_ce_legis exp_ce_governor exp_ce_central exp_ce_party exp_ce_private exp_ce_military exp_ce_manager
+foreach var of varlist exp_ce_public-exp_ce_manageryear{
+	if strpos("`var'","year"){
+	local dummyyear = "`dummyyear'  `var'"
+	}
+	else{
+	local dummy = "`dummy' `var'"
+	}
+}
+
+foreach var of varlist `dummy' {
+	if "`var'" == "exp_ce_Ngovernor"{
+		continue
+	}
+	noisily list countryn year `var' `var'year sourcen if (`var'>0 & `var'!=.) & (`var'year==0), ab(33)
+	noisily list countryn year `var' `var'year sourcen if (`var'year>0 &`var'year!=.) & (`var'==0|`var'==.), ab(33)
+	/*
+	if _rc{
+		 noisily list countryn year `var' sourcen if `var'>1 &`var'!=., ab(33)
+	}
+	*/
+}
+
+************************************************************
+********2.no. of missing
+************************************************************
+cd ..\WorkingData
+
+use Leadership.dta, clear
+egen rmiss_elig = rowmiss(elig_*)
+egen rmiss_exp = rowmiss(edu_ce-religion_ce)
+
+bysort country: egen p50rmiss_elig =  pctile(rmiss_elig),p(50)
+bysort country: egen mrmiss_elig =  mean(rmiss_elig)
+bysort country: egen p75rmiss_elig =  pctile(rmiss_elig),p(50)
+bysort country: egen sdrmiss_elig = sd(rmiss_elig)
+
+bysort country: egen prmiss_exp =  pctile(rmiss_exp),p(50)
+bysort country: egen mrmiss_exp =  mean(rmiss_exp)
+bysort country: egen p75rmiss_exp =  pctile(rmiss_exp),p(50)
+bysort country: egen sdrmiss_exp = sd(rmiss_exp)
+
+bysort country: drop if _n>1
+gsort -mrmiss_elig
+list countryn mrmiss_elig sdrmiss_elig sourcen sourcefile
+
+bysort country: drop if _n>1
+gsort -mrmiss_exp
+list countryn mrmiss_exp sdrmiss_exp sourcen sourcefile
+label variable mrmiss_exp "Mean of missing no. in exp variables"
+label variable mrmiss_elig "Mean of missing no. in elig variables"
+label variable sdrmiss_exp "Standard Dev. of missing no. in exp variables"
+label variable sdrmiss_elig "Standard Dev. of missing no. in elig variables"
+gen totalmissing = mrmiss_elig + mrmiss_exp
+
+gsort -mrmiss_elig -mrmiss_exp
+export excel countryn mrmiss_exp sdrmiss_exp mrmiss_elig sdrmiss_elig totalmissing filename sourcen using "D:\GitHub\Leadership\Cleanup\WorkingData\CheckMissing.xls", firstrow(varlabels) replace
+
+

@@ -46,6 +46,7 @@ foreach f of local file {
 		capture gen year = 2010 - _N + _n //如果缺少year变量，根据序号生成
 		tostring year, replace
 		sort year
+		capture drop title_ce head_title f presdirect legdirect presterm_limit presterm legterm exselec openl
 		save `obs'-2.dta, replace
 		clear
 		
@@ -60,7 +61,7 @@ foreach f of local file {
 		tostring year,replace
 		sort year
 		save `obs'-1.dta, replace
-		
+		capture drop title_ce head_title f presdirect legdirect presterm_limit presterm legterm exselec openl
 		merge 1:1 year using `obs'-2.dta
 		drop _merge
 		
