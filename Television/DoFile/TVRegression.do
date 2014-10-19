@@ -3,9 +3,22 @@ set more off
 set trace off
 cd "D:\GitHub\Leadership\Television\WorkingData"
 use Leader_TV, clear
-tsset PIPECode year 
+*tsset PIPECode year 
+
+bysort PIPECode cen (year): keep if _n ==1
+bysort PIPECode (year): gen LeaderID = _n
+tsset PIPECode LeaderID 
+scatter age d.age 
+scatter age_firstterm d.age_firstterm 
+scatter age_left d.age_left
+reg age d.age
+reg age d.age if democracy & LeaderID>1
+reg age d.age if democracy & presi & LeaderID>1 & year>1980
+reg age d.age if democracy & parli & LeaderID>1
+reg age d.age if !democracy
 
 
+/*
 forvalue divide = 1960(1)2000{
 use Leader_TV, clear
 tsset PIPECode year 
