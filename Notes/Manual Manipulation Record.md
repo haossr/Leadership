@@ -37,7 +37,7 @@ Manual Manipulation Record
 ###2014-8-30
 - log-revised Zhangtianhong: drop the extra headers
 
-###2014-9-18 From **SJN**
+###2014-9-18 From *SJN*
 - El Salvador 1956,1967,1977 exp_ce_minister->1
 - 1956,1977 exp_ce_central->1
 - 1989 exp_ce_legis,exp_ce_manager->1
@@ -47,8 +47,8 @@ Manual Manipulation Record
 - 1951 Exp_ce_legisyear->1
 - Saudi Arabia 1950-1952 exp_ce_governor->0
 
-###2014-9-18 From **YSQ**
--Tanzania 
+###2014-9-18 From *YSQ*
+-Tanzania
 	- gender_ce=0
 	- 1970: firstterm_ce=0
 - Yemen
@@ -92,15 +92,15 @@ Manual Manipulation Record
 - Germany
 	- 1998-2004:exp_ce_party=0
 
-###2014-10-1 From **ZTH**
+###2014-10-1 From *ZTH*
 - Nigeria 1960-1965 exp_ce_vice 改为0,exp_ce_viceyear->0
 - Sri Lanka 1956-1959 exp_ce_Ngovernor->1 
 - Namibia 2009 exp_ce_party->1
 
-###2014-10-20 From **LC**
-	- Thegambia 2008-2010，exp_ce_Ngovernor->1
-	- Ivory Coast 2008-2010, exp_ce_Ngovernor->1
-	- Liberia 1960-1961, exp_ce_Ngovernor->1
+###2014-10-20 From *LC*
+- Thegambia 2008-2010，exp_ce_Ngovernor->1
+- Ivory Coast 2008-2010, exp_ce_Ngovernor->1
+- Liberia 1960-1961, exp_ce_Ngovernor->1
 
 
 
