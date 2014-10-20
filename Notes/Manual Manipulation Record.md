@@ -36,3 +36,72 @@ Manual Manipulation Record
 
 ###2014-8-30
 - log-revised Zhangtianhong: drop the extra headers
+
+###2014-9-18 From **SJN**
+- El Salvador 1956,1967,1977 exp_ce_minister->1
+- 1956,1977 exp_ce_central->1
+- 1989 exp_ce_legis,exp_ce_manager->1
+- 1989,2004 exp_ce_private->1
+- 1984,1994 exp_ce_governor,exp_ce_Ngovernor,exp_ce_party->1
+- Indonesia 1951 exp_ce_ministeryear->0
+- 1951 Exp_ce_legisyear->1
+- Saudi Arabia 1950-1952 exp_ce_governor->0
+
+###2014-9-18 From **YSQ**
+-Tanzania 
+	- gender_ce=0
+	- 1970: firstterm_ce=0
+- Yemen
+	- 1991-2010: firstterm_ce=0
+	- 1991-2010: exp_ce_vice=1, exp_ce_viceyear=0  note: last for about one month
+- Zambia
+	- 1964-1967: exp_ce_public=1
+- Yugoslavia
+	- 1988: exp_ce_vice=0
+	- 1991: exp_ce_vice=0
+	- 1990: exp_ce_central=1??exp_ce_centralyear=0
+- Cyprus
+	- 1977: exp_ce_minister=1
+	- 2008: exp_ce_private=1
+	- 1968: exp_ce_central=1
+- Colombia
+	- 1953-1957: exp_ce_minister=1
+	- 1958: exp_ce_private=1
+	- 1982: exp_ce_private=1
+	- 1990: exp_ce_private=1
+	- 1967: exp_ce_centralyear=1958: exp_ce_party=1
+	- 1974: exp_ce_party=1
+	- 1990: exp_ce_party=1
+- Ecuador 
+	- 2007-2010: exp_ce_ministeryear=0     note: last only for four months  
+- Turkey
+	- 1950-1959: exp_ce_party=0, exp_ce_partyyear=0
+	- 1961-1964: exp_ce_partyyear=23
+	- 1965-1970: exp_ce_partyyear=1
+	- 1999-2001: exp_ce_partyyear=19
+	- 2003-2006: exp_ce_partyyear=2
+	- 2007-2010: exp_ce_partyyear=2
+	- 1965-1968: exp_ce_central=1??exp_ce_centralyear=0
+	- 1975: exp_ce_privateyear=3
+- Thailand
+	- 1955: exp_ce_manager=1
+	- 2001: exp_ce_manager=1
+	- 1975: exp_ce_private=1
+- Taiwan
+	- 1988-2002: exp_ce_party=0
+- Germany
+	- 1998-2004:exp_ce_party=0
+
+###2014-10-1 From **ZTH**
+- Nigeria 1960-1965 exp_ce_vice 改为0,exp_ce_viceyear->0
+- Sri Lanka 1956-1959 exp_ce_Ngovernor->1 
+- Namibia 2009 exp_ce_party->1
+
+###2014-10-20 From **LC**
+	- Thegambia 2008-2010，exp_ce_Ngovernor->1
+	- Ivory Coast 2008-2010, exp_ce_Ngovernor->1
+	- Liberia 1960-1961, exp_ce_Ngovernor->1
+
+
+
+
