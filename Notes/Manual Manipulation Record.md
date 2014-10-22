@@ -93,7 +93,7 @@ Manual Manipulation Record
 	- 1998-2004:exp_ce_party=0
 
 ###2014-10-1 From *ZTH*
-- Nigeria 1960-1965 exp_ce_vice 改为0,exp_ce_viceyear->0
+- Nigeria 1960-1965 exp_ce_vice ->0,exp_ce_viceyear->0
 - Sri Lanka 1956-1959 exp_ce_Ngovernor->1 
 - Namibia 2009 exp_ce_party->1
 
@@ -102,6 +102,19 @@ Manual Manipulation Record
 - Ivory Coast 2008-2010, exp_ce_Ngovernor->1
 - Liberia 1960-1961, exp_ce_Ngovernor->1
 
-
+###2014-10-22 From *XTY*
+- Guatemala, 1969-1970 exp_ce_public->1
+- Guatemala, 2001-2008, exp_ce_minister->1
+- Guatemala, 1973,1976, exp_ce_minister->1
+- Guatemala， 1960-1961， exp_ce_party->1
+- Guatemala, 1968-1970, exp_ce_public->1
+- Honduras, 1970-1973, exp_ce_public->1
+- Honduras， 2004-2010, exp_ce_minister->1
+- Honduras，  1970-1973, exp_ce_pubic->1
+- Isreal, 1996-1998, exp_ce_ministeryear->1
+- Isreal, 2009-2010, exp_ce_ministeryear->8
+- Iraq, 2004-2010, exp_ce_central->0
+- Iran 1980， exp_ce_central->1
+- Iran 2005-2010, exp_ce_private->0
 
 
