@@ -8,7 +8,7 @@ cd ..\RawData
 *a.1.PWT80.dta
 use .\PWT80\pwt80.dta, clear
 rename countrycode PWTCode
-sort PWTCode
+sort PWTCode year
 save ..\WorkingData\pwt80.dta, replace
 
 **********************************************************************
@@ -16,8 +16,10 @@ save ..\WorkingData\pwt80.dta, replace
 **********************************************************************
 cd ..\WorkingData
 use Leadership_1.dta, clear
-sort COWCode
-merge m:1 COWCode using countryID.dta
+drop if PWTCode=="."
+drop if PWTCode == ""
+sort PWTCode year
+merge m:1 PWTCode year using pwt80.dta
 tab _merge
 if testing{
 	tab countryn_L PIPECode if _merge==1

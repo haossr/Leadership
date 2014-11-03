@@ -93,38 +93,3 @@ export excel country if pcgdpC1979>1 & pcgdpC2011<1 &pcgdpC1979!=. using "..\Out
 
 
 
-
-/*
-capture drop developed
-gen developed = 0
-bysort PWT (year): replace developed = 1 if pcgdpC[1]>=1
-preserve
-keep if developed
-capture drop lgpcgdpC
-
-gen lgpcgdpC = log(pcgdpC)
-#delimit ;
-xtline lgpcgdpC, 
-overlay
-legend(off)
-;
-#delimit cr
-
-
-restore
-
-*3.
-keep if (year == 2011|year==1979)
-bysort PWT (year):gen noyear = _N
-drop if noyear <2
-drop noyear
-bysort PWT (year):gen d_pcgdpU = (pcgdpU[2]-pcgdpU[1])/pcgdpU[1]
-bysort PWT (year):gen pcgdpU1973 = pcgdpU[1]
-bysort PWT (year):gen pcgdpU2011 = pcgdpU[2]
-drop if year ==2011
-
-
-scatter pcgdpU1973 pcgdpU2011
-sort d_pcgdpU
-label variable d_pcgdpU "Growth rate of pcGDP(US as benchmark)" 
-
