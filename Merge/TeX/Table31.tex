@@ -1,22 +1,22 @@
 \begin{table}[htbp]\centering
 \def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
-\caption{Testing for csh\_c \label{tab:regression3}}
+\caption{Testing for csh\_c \label{tab:regression1}}
 \begin{tabular}{l*{3}{c}}
 \hline\hline
             &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}\\
             &\multicolumn{1}{c}{Benchmark}&\multicolumn{1}{c}{Median}&\multicolumn{1}{c}{Rich}\\
 \hline
-democracy   &     -0.0009   &     -0.0037   &      0.0311   \\
-            &    (0.0048)   &    (0.0055)   &    (0.0202)   \\
+democracy   &      0.0049*  &      0.0003   &      0.0123   \\
+            &    (0.0029)   &    (0.0036)   &    (0.0134)   \\
 [1em]
-L.csh\_c     &      1.0219***&      0.7879***&      0.5869***\\
-            &    (0.0113)   &    (0.0203)   &    (0.0283)   \\
+L.csh\_c     &      1.0063***&      0.8283***&      0.7158***\\
+            &    (0.0078)   &    (0.0153)   &    (0.0206)   \\
 [1em]
-Constant    &     -0.0041   &      0.1429***&      0.1933***\\
-            &    (0.0097)   &    (0.0146)   &    (0.0232)   \\
+Constant    &     -0.0063   &      0.1091***&      0.1304***\\
+            &    (0.0115)   &    (0.0154)   &    (0.0335)   \\
 \hline
-\(N\)       &        3675   &         965   &         901   \\
-adj. \(R^{2}\)&       0.692   &       0.613   &       0.344   \\
+\(N\)       &        5910   &        1491   &        1274   \\
+adj. \(R^{2}\)&       0.745   &       0.673   &       0.500   \\
 \hline\hline
 \multicolumn{4}{l}{\footnotesize Standard errors in parentheses}\\
 \multicolumn{4}{l}{\footnotesize * \(p<0.1\), ** \(p<0.05\), *** \(p<0.01\)}\\

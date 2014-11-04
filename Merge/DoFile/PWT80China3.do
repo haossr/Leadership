@@ -13,7 +13,7 @@ xtset PIPECode year
 
 gen lgdppc = (gdppc - L.gdppc)/gdppc
 gen ggdppc = log(gdppc)
-keep if year >1978 & year<2011
+keep if year >=1950 & year<=2011
 
 *1.1. Fixed Effect
 xtreg lgdppc democracy L1.lgdppc i.year, fe
@@ -37,9 +37,12 @@ coeflabels(mpg2 "mpg$?2$" _cons Constant);
 #delimit cr
 
 *2. Heterogeneity
-capture drop lgdppc1979
-bysort PIPECode (year): gen lgdppc1979 = lgdppc[1]
+gen year1979 = 0
+replace year1979 = 1 if year == 1979
+bysort PIPECode (year1979): gen lgdppc1979 = lgdppc[_N]
 recode gdppc (0/4000 = 1) (4000/12000 = 2) (12000/99999999999 = 3), gen(rich)
+
+sort PIPECode year
 gen gdppc1979d = c.lgdppc1979#democracy 
 gen gdppcld = c.L.lgdppc#democracy
 xtreg lgdppc democracy gdppc1979d L.lgdppc i.year, fe
@@ -78,7 +81,7 @@ gen ghc = (hc - L.hc)/hc
 gen gTFP = (rtfpna - L.rtfpna)/rtfpna
 gen lgdppc = (gdppc - L.gdppc)/gdppc
 
-keep if year >1978 & year<2011
+keep if year >=1950 & year<=2011
 
 local Y csh_c csh_i csh_g csh_nx gk gl ghc gTFP labsh
 local j = 1
@@ -91,7 +94,7 @@ est store model`j'`i'
 }
 #delimit ;
 esttab model`j'0 model`j'2 model`j'3 using ..\TeX\Table3`j'.tex, drop(*year) replace
-title("Testing for `var'"\label{tab:regression3})
+title("Testing for `var'"\label{tab:regression`j'})
 mtitle("Benchmark" "Median" "Rich")
 b(%6.4f) se(%6.4f) star(* 0.1 ** 0.05 *** 0.01) ar2 
 coeflabels(mpg2 "mpg$?2$" _cons Constant);

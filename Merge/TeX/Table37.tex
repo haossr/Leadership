@@ -1,22 +1,22 @@
 \begin{table}[htbp]\centering
 \def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
-\caption{Testing for ghc \label{tab:regression3}}
+\caption{Testing for ghc \label{tab:regression7}}
 \begin{tabular}{l*{3}{c}}
 \hline\hline
             &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}\\
             &\multicolumn{1}{c}{Benchmark}&\multicolumn{1}{c}{Median}&\multicolumn{1}{c}{Rich}\\
 \hline
-democracy   &      0.0000   &     -0.0004   &      0.0011   \\
-            &    (0.0002)   &    (0.0005)   &    (0.0009)   \\
+democracy   &     -0.0000   &     -0.0002   &      0.0004   \\
+            &    (0.0001)   &    (0.0004)   &    (0.0006)   \\
 [1em]
-L.ghc       &      0.8101***&      0.7815***&      0.7693***\\
-            &    (0.0105)   &    (0.0215)   &    (0.0222)   \\
+L.ghc       &      0.8437***&      0.8066***&      0.7955***\\
+            &    (0.0075)   &    (0.0162)   &    (0.0179)   \\
 [1em]
-Constant    &      0.0021***&      0.0029***&      0.0012   \\
-            &    (0.0003)   &    (0.0007)   &    (0.0009)   \\
+Constant    &      0.0010** &      0.0014   &      0.0009   \\
+            &    (0.0005)   &    (0.0011)   &    (0.0013)   \\
 \hline
-\(N\)       &        3135   &         837   &         863   \\
-adj. \(R^{2}\)&       0.674   &       0.655   &       0.604   \\
+\(N\)       &        5114   &        1331   &        1226   \\
+adj. \(R^{2}\)&       0.734   &       0.685   &       0.702   \\
 \hline\hline
 \multicolumn{4}{l}{\footnotesize Standard errors in parentheses}\\
 \multicolumn{4}{l}{\footnotesize * \(p<0.1\), ** \(p<0.05\), *** \(p<0.01\)}\\
