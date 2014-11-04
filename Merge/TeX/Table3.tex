@@ -1,0 +1,54 @@
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{Testing for channels \label{tab:regression3}}
+\begin{tabular}{l*{4}{c}}
+\hline\hline
+            &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}\\
+            &\multicolumn{1}{c}{lgdppc}&\multicolumn{1}{c}{labsh}&\multicolumn{1}{c}{labsh}&\multicolumn{1}{c}{labsh}\\
+\hline
+democracy   &      0.0009   &      0.0028   &     -0.0056   &      0.0008   \\
+            &    (0.0009)   &    (0.0027)   &    (0.0040)   &    (0.0015)   \\
+[1em]
+L.lgdppc    &      0.0193***&               &               &               \\
+            &    (0.0056)   &               &               &               \\
+[1em]
+csh\_c       &     -0.0019   &               &               &               \\
+            &    (0.0045)   &               &               &               \\
+[1em]
+csh\_i       &     -0.0055   &               &               &               \\
+            &    (0.0056)   &               &               &               \\
+[1em]
+csh\_g       &      0.0001   &               &               &               \\
+            &    (0.0056)   &               &               &               \\
+[1em]
+csh\_nx      &      0.0033***&               &               &               \\
+            &    (0.0012)   &               &               &               \\
+[1em]
+gk          &      0.5824***&               &               &               \\
+            &    (0.0126)   &               &               &               \\
+[1em]
+gl          &      0.3481***&               &               &               \\
+            &    (0.0072)   &               &               &               \\
+[1em]
+ghc         &      0.4663***&               &               &               \\
+            &    (0.0438)   &               &               &               \\
+[1em]
+gTFP        &      0.9388***&               &               &               \\
+            &    (0.0063)   &               &               &               \\
+[1em]
+labsh       &     -0.0168** &               &               &               \\
+            &    (0.0068)   &               &               &               \\
+[1em]
+L.labsh     &               &      0.8243***&      0.8556***&      0.8475***\\
+            &               &    (0.0183)   &    (0.0177)   &    (0.0105)   \\
+[1em]
+Constant    &      0.0062   &      0.0879***&      0.0843***&      0.0821***\\
+            &    (0.0051)   &    (0.0103)   &    (0.0111)   &    (0.0061)   \\
+\hline
+\(N\)       &        1072   &         926   &         894   &        2880   \\
+adj. \(R^{2}\)&       0.971   &       0.743   &       0.810   &       0.741   \\
+\hline\hline
+\multicolumn{5}{l}{\footnotesize Standard errors in parentheses}\\
+\multicolumn{5}{l}{\footnotesize * \(p<0.1\), ** \(p<0.05\), *** \(p<0.01\)}\\
+\end{tabular}
+\end{table}

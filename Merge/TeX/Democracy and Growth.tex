@@ -1,0 +1,52 @@
+\documentclass{article}
+  \usepackage{amsmath}
+  \usepackage{amssymb}
+  \usepackage{graphicx}
+  \usepackage{float}
+  \usepackage{setspace}
+  \usepackage{stata}
+  \usepackage{natbib}
+  \usepackage{indentfirst}
+  \usepackage{listings}
+  \usepackage{textcomp}
+  \usepackage{color}
+  \usepackage{fontenc}
+  \usepackage{accsupp}% http://ctan.org/pkg/accsupp
+  \usepackage[colorlinks, linkcolor=blue, anchorcolor=blue, citecolor=green]{hyperref}%For hyper-link reference
+    %\input{Stata.tex}% for stata language highlights
+\setlength{\parindent}{2em}
+
+\topmargin=-1.2cm \oddsidemargin=0.1cm \evensidemargin=0.1cm
+\textwidth=16 true cm \textheight=23 true cm
+
+\font\euler=EUSM10 \font\eulers=EUSM7
+
+\begin{document}
+
+\title{Democracy $\times$ Growth}
+\author{{\normalsize SHENG Hao， via \LaTeX}}
+\date{\today}
+
+\maketitle
+
+\def \Pr{{\rm Pr}}
+\baselineskip 0.6cm
+
+\section{Replication}
+\input{table1.tex}
+\newpage
+\section{Heterogeneity}
+\input{table2.tex}
+\newpage
+\section{Testing for channels}
+\input{table31.tex}
+\input{table32.tex}
+\input{table33.tex}
+\input{table34.tex}
+\input{table35.tex}
+\input{table36.tex}
+\input{table37.tex}
+\input{table38.tex}
+\input{table39.tex}
+
+\end{document}

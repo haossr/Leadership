@@ -1,0 +1,33 @@
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{Replication \label{tab:regression1}}
+\begin{tabular}{l*{4}{c}}
+\hline\hline
+            &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}\\
+            &\multicolumn{1}{c}{FE}&\multicolumn{1}{c}{FE}&\multicolumn{1}{c}{GMM}&\multicolumn{1}{c}{GMM}\\
+\hline
+democracy   &     -0.0011   &     -0.0007   &      0.0012   &      0.0017   \\
+            &    (0.0044)   &    (0.0048)   &    (0.0101)   &    (0.0104)   \\
+[1em]
+L.lgdppc    &      0.1685***&      0.0955***&     -0.2907***&     -0.5310***\\
+            &    (0.0157)   &    (0.0175)   &    (0.0174)   &    (0.0176)   \\
+[1em]
+L2.lgdppc   &               &     -0.0698***&               &     -0.4285***\\
+            &               &    (0.0173)   &               &    (0.0161)   \\
+[1em]
+L3.lgdppc   &               &      0.0385** &               &     -0.2040***\\
+            &               &    (0.0170)   &               &    (0.0158)   \\
+[1em]
+L4.lgdppc   &               &     -0.0115   &               &     -0.0450***\\
+            &               &    (0.0158)   &               &    (0.0158)   \\
+[1em]
+Constant    &      0.0003   &     -0.0015   &               &               \\
+            &    (0.0065)   &    (0.0064)   &               &               \\
+\hline
+\(N\)       &        3648   &        3236   &        3509   &        3098   \\
+adj. \(R^{2}\)&       0.042   &       0.003   &               &               \\
+\hline\hline
+\multicolumn{5}{l}{\footnotesize Standard errors in parentheses}\\
+\multicolumn{5}{l}{\footnotesize * \(p<0.1\), ** \(p<0.05\), *** \(p<0.01\)}\\
+\end{tabular}
+\end{table}

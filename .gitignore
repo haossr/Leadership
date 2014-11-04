@@ -82,3 +82,6 @@ github-stats.py
 /Literature/
 /Cleanup/*
 !/Cleanup/DoFile
+
+*.out
+*.fdb_latexmk

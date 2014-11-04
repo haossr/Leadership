@@ -1,0 +1,24 @@
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{Testing for csh\_g \label{tab:regression3}}
+\begin{tabular}{l*{3}{c}}
+\hline\hline
+            &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}\\
+            &\multicolumn{1}{c}{Benchmark}&\multicolumn{1}{c}{Median}&\multicolumn{1}{c}{Rich}\\
+\hline
+democracy   &      0.0063** &      0.0128***&      0.0049   \\
+            &    (0.0026)   &    (0.0039)   &    (0.0106)   \\
+[1em]
+L.csh\_g     &      0.8576***&      0.8293***&      0.6980***\\
+            &    (0.0098)   &    (0.0178)   &    (0.0248)   \\
+[1em]
+Constant    &      0.0310***&      0.0292***&      0.0535***\\
+            &    (0.0044)   &    (0.0068)   &    (0.0106)   \\
+\hline
+\(N\)       &        3675   &         965   &         901   \\
+adj. \(R^{2}\)&       0.710   &       0.750   &       0.518   \\
+\hline\hline
+\multicolumn{4}{l}{\footnotesize Standard errors in parentheses}\\
+\multicolumn{4}{l}{\footnotesize * \(p<0.1\), ** \(p<0.05\), *** \(p<0.01\)}\\
+\end{tabular}
+\end{table}

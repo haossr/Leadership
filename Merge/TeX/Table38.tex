@@ -1,0 +1,24 @@
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{Testing for gTFP \label{tab:regression3}}
+\begin{tabular}{l*{3}{c}}
+\hline\hline
+            &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}\\
+            &\multicolumn{1}{c}{Benchmark}&\multicolumn{1}{c}{Median}&\multicolumn{1}{c}{Rich}\\
+\hline
+democracy   &     -0.0005   &     -0.0063   &      0.0031   \\
+            &    (0.0056)   &    (0.0066)   &    (0.0165)   \\
+[1em]
+L.gTFP      &      0.0894***&      0.2923***&      0.1320***\\
+            &    (0.0192)   &    (0.0316)   &    (0.0346)   \\
+[1em]
+Constant    &     -0.0129   &     -0.0069   &     -0.0232   \\
+            &    (0.0084)   &    (0.0097)   &    (0.0161)   \\
+\hline
+\(N\)       &        2547   &         816   &         861   \\
+adj. \(R^{2}\)&       0.001   &       0.123   &       0.045   \\
+\hline\hline
+\multicolumn{4}{l}{\footnotesize Standard errors in parentheses}\\
+\multicolumn{4}{l}{\footnotesize * \(p<0.1\), ** \(p<0.05\), *** \(p<0.01\)}\\
+\end{tabular}
+\end{table}

@@ -1,0 +1,24 @@
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{Testing for gk \label{tab:regression3}}
+\begin{tabular}{l*{3}{c}}
+\hline\hline
+            &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}\\
+            &\multicolumn{1}{c}{Benchmark}&\multicolumn{1}{c}{Median}&\multicolumn{1}{c}{Rich}\\
+\hline
+democracy   &     -0.0014   &      0.0019   &     -0.0104** \\
+            &    (0.0012)   &    (0.0028)   &    (0.0043)   \\
+[1em]
+L.gk        &      0.7478***&      0.4492***&      0.7355***\\
+            &    (0.0110)   &    (0.0292)   &    (0.0204)   \\
+[1em]
+Constant    &      0.0049***&      0.0224***&      0.0132***\\
+            &    (0.0017)   &    (0.0043)   &    (0.0042)   \\
+\hline
+\(N\)       &        3638   &         941   &         899   \\
+adj. \(R^{2}\)&       0.588   &       0.257   &       0.598   \\
+\hline\hline
+\multicolumn{4}{l}{\footnotesize Standard errors in parentheses}\\
+\multicolumn{4}{l}{\footnotesize * \(p<0.1\), ** \(p<0.05\), *** \(p<0.01\)}\\
+\end{tabular}
+\end{table}
