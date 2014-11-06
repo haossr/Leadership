@@ -8,11 +8,11 @@
 cd ..\RawData
 *a.WGI.dta
 /*
-set timeout1
-set timeout2
-local var "CC.STD.ERR;CC.EST;CC.NO.SRC;CC.PER.RNK;GE.EST;GE.NO.SRC;GE.PER.RNK;GE.STD.ERR;PV.EST;PV.NO.SRC;PV.PER.RNK;PV.STD.ERR;RQ.EST;RQ.NO.SRC;RQ.PER.RNK;RQ.STD.ERR;RL.EST;RL.NO.SRC;RL.PER.RNK;RL.STD.ERR;VA.EST;VA.NO.SRC;VA.PER.RNK;VA.STD.ERR;"
+set timeout1 10
+set timeout2 10
+local var "NY.GDP.MKTP.KD CC.STD.ERR;CC.EST;CC.NO.SRC;CC.PER.RNK;GE.EST;GE.NO.SRC;GE.PER.RNK;GE.STD.ERR;PV.EST;PV.NO.SRC;PV.PER.RNK;PV.STD.ERR;RQ.EST;RQ.NO.SRC;RQ.PER.RNK;RQ.STD.ERR;RL.EST;RL.NO.SRC;RL.PER.RNK;RL.STD.ERR;VA.EST;VA.NO.SRC;VA.PER.RNK;VA.STD.ERR;"
 wbopendata, language(en - English) country() topics() indicator(`var') clear long
-save WGI.dta
+save WGI.dta, replace
 */
 
 use WGI\WGI.dta, clear

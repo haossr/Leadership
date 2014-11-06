@@ -7,7 +7,8 @@ cd D:\GitHub\Leadership\Merge\WorkingData
 
 *1. Replication
 use Leadership_8.dta, clear
-gen gdp = rgdpna
+recode polity2 (-99/0 = 0)(1/99 = 1), gen(Democracy)
+gen gdp = ny_ //or rgdpn 
 gen gdppc = gdp/pop
 xtset PIPECode year
 
@@ -16,15 +17,15 @@ gen ggdppc = log(gdppc)
 keep if year >=1950 & year<=2011
 
 *1.1. Fixed Effect
-xtreg lgdppc democracy L1.lgdppc i.year, fe
+xtreg lgdppc Democracy L1.lgdppc i.year, fe
 est store model11
-xtreg lgdppc democracy L(1/4).lgdppc i.year, fe
+xtreg lgdppc Democracy L(1/4).lgdppc i.year, fe
 est store model12
 
 *1.2. GMM
-xtabond2 lgdppc democracy L.lgdppc i.year, gmm(democracy) iv(L.lgdppc) noleveleq small
+xtabond2 lgdppc Democracy L.lgdppc i.year, gmm(Democracy) iv(L.lgdppc) noleveleq small
 est store model13
-xtabond2 lgdppc democracy L(1/4).lgdppc i.year, gmm(democracy) iv(L(1/4).lgdppc) noleveleq small
+xtabond2 lgdppc Democracy L(1/4).lgdppc i.year, gmm(Democracy) iv(L(1/4).lgdppc) noleveleq small
 est store model14
 
 
@@ -43,18 +44,22 @@ bysort PIPECode (year1979): gen lgdppc1979 = lgdppc[_N]
 recode gdppc (0/4000 = 1) (4000/12000 = 2) (12000/99999999999 = 3), gen(rich)
 
 sort PIPECode year
-gen gdppc1979d = c.lgdppc1979#democracy 
-gen gdppcld = c.L.lgdppc#democracy
-xtreg lgdppc democracy gdppc1979d L.lgdppc i.year, fe
+gen gdppc1979d = c.lgdppc1979#Democracy 
+gen gdppcld = c.L.lgdppc#Democracy
+xtreg lgdppc Democracy gdppc1979d L.lgdppc i.year, fe
 est store model21
-xtreg lgdppc democracy gdppcld L.lgdppc i.year, fe
+xtreg lgdppc Democracy gdppcld L.lgdppc i.year, fe
 est store model22
 
 forvalue i =1(1)3{
-xtreg lgdppc democracy gdppc1979d L.lgdppc i.year if rich ==`i', fe
+capture xtreg lgdppc Democracy gdppc1979d L.lgdppc i.year if rich ==`i', fe
+if !_rc{
 est store model21`i'
-xtreg lgdppc democracy gdppcld L.lgdppc i.year if rich ==`i', fe
+}
+capture{ xtreg lgdppc Democracy gdppcld L.lgdppc i.year if rich ==`i', fe
+if !_rc{
 est store model22`i'
+}
 }
 
 #delimit ;
@@ -67,7 +72,8 @@ coeflabels(mpg2 "mpg$?2$" _cons Constant);
 
 *3. Testing for channels
 use Leadership_8.dta, clear
-gen gdp = rgdpna
+recode polity2 (-99/0 = 0)(1/99 = 1), gen(Democracy)
+gen gdp = ny_
 gen gdppc = gdp/pop
 recode gdppc (0/4000 = 1) (4000/12000 = 2) (12000/99999999999 = 3), gen(rich)
 xtset PIPECode year
@@ -85,19 +91,23 @@ keep if year >=1950 & year<=2011
 
 local Y csh_c csh_i csh_g csh_nx gk gl ghc gTFP labsh
 local j = 1
+
 foreach var in `Y'{
-xtreg `var' democracy L.`var' `control' i.year, fe
-est store model`j'0
-forvalue i =2(1)3{
-xtreg `var' democracy L.`var' `control' i.year if rich ==`i', fe
-est store model`j'`i'
-}
-#delimit ;
-esttab model`j'0 model`j'2 model`j'3 using ..\TeX\Table3`j'.tex, drop(*year) replace
-title("Testing for `var'"\label{tab:regression`j'})
-mtitle("Benchmark" "Median" "Rich")
-b(%6.4f) se(%6.4f) star(* 0.1 ** 0.05 *** 0.01) ar2 
-coeflabels(mpg2 "mpg$?2$" _cons Constant);
-#delimit cr
-local j = `j' + 1
+	xtreg `var' Democracy L.`var' `control' i.year, fe
+	est store model`j'0
+	forvalue i =2(1)3{
+		capture xtreg `var' Democracy L.`var' `control' i.year if rich ==`i', fe
+		if !_rc{
+			est store model`j'`i'
+		}
+	}
+	#delimit ;
+	esttab model`j'* using ..\TeX\Table3`j'.tex, drop(*year) replace
+	title("Testing for `var'"\label{tab:regression`j'})
+	mtitle("Benchmark" "Median" "Rich")
+	b(%6.4f) se(%6.4f) star(* 0.1 ** 0.05 *** 0.01) ar2 
+	coeflabels(mpg2 "mpg$?2$" _cons Constant);
+	#delimit cr
+
+	local j = `j' + 1
 }
