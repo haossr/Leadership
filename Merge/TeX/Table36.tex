@@ -1,24 +1,24 @@
 \begin{table}[htbp]\centering
 \def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
 \caption{Testing for gl \label{tab:regression6}}
-\begin{tabular}{l*{3}{c}}
+\begin{tabular}{l*{2}{c}}
 \hline\hline
-            &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}\\
-            &\multicolumn{1}{c}{Benchmark}&\multicolumn{1}{c}{Median}&\multicolumn{1}{c}{Rich}\\
+            &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}\\
+            &\multicolumn{1}{c}{Benchmark}&\multicolumn{1}{c}{Median}\\
 \hline
-Democracy   &     -0.0031   &     -0.0031   &     -0.0010   \\
-            &    (0.0021)   &    (0.0040)   &    (0.0054)   \\
+Democracy   &     -0.0031   &     -0.0049** \\
+            &    (0.0021)   &    (0.0025)   \\
 [1em]
-L.gl        &      0.2566***&      0.2119***&      0.2851***\\
-            &    (0.0230)   &    (0.0392)   &    (0.0317)   \\
+L.gl        &      0.2566***&      0.2847***\\
+            &    (0.0230)   &    (0.0250)   \\
 [1em]
-Constant    &     -0.0076   &     -0.0134   &     -0.0049   \\
-            &    (0.0049)   &    (0.0089)   &    (0.0103)   \\
+Constant    &     -0.0076   &      0.0126** \\
+            &    (0.0049)   &    (0.0052)   \\
 \hline
-\(N\)       &        1840   &         702   &        1015   \\
-adj. \(R^{2}\)&       0.131   &       0.063   &       0.181   \\
+\(N\)       &        1840   &        1521   \\
+adj. \(R^{2}\)&       0.131   &       0.149   \\
 \hline\hline
-\multicolumn{4}{l}{\footnotesize Standard errors in parentheses}\\
-\multicolumn{4}{l}{\footnotesize * \(p<0.1\), ** \(p<0.05\), *** \(p<0.01\)}\\
+\multicolumn{3}{l}{\footnotesize Standard errors in parentheses}\\
+\multicolumn{3}{l}{\footnotesize * \(p<0.1\), ** \(p<0.05\), *** \(p<0.01\)}\\
 \end{tabular}
 \end{table}

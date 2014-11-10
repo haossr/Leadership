@@ -1,24 +1,24 @@
 \begin{table}[htbp]\centering
 \def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
 \caption{Testing for gk \label{tab:regression5}}
-\begin{tabular}{l*{3}{c}}
+\begin{tabular}{l*{2}{c}}
 \hline\hline
-            &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}\\
-            &\multicolumn{1}{c}{Benchmark}&\multicolumn{1}{c}{Median}&\multicolumn{1}{c}{Rich}\\
+            &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}\\
+            &\multicolumn{1}{c}{Benchmark}&\multicolumn{1}{c}{Median}\\
 \hline
-Democracy   &     -0.0006   &     -0.0017   &     -0.0080** \\
-            &    (0.0008)   &    (0.0018)   &    (0.0039)   \\
+Democracy   &     -0.0006   &     -0.0005   \\
+            &    (0.0008)   &    (0.0008)   \\
 [1em]
-L.gk        &      0.7696***&      0.4931***&      0.7465***\\
-            &    (0.0083)   &    (0.0234)   &    (0.0173)   \\
+L.gk        &      0.7696***&      0.7494***\\
+            &    (0.0083)   &    (0.0094)   \\
 [1em]
-Constant    &     -0.0023   &      0.0094*  &      0.0083   \\
-            &    (0.0027)   &    (0.0056)   &    (0.0073)   \\
+Constant    &     -0.0023   &      0.0073***\\
+            &    (0.0027)   &    (0.0026)   \\
 \hline
-\(N\)       &        5609   &        1404   &        1264   \\
-adj. \(R^{2}\)&       0.638   &       0.339   &       0.638   \\
+\(N\)       &        5609   &        4728   \\
+adj. \(R^{2}\)&       0.638   &       0.613   \\
 \hline\hline
-\multicolumn{4}{l}{\footnotesize Standard errors in parentheses}\\
-\multicolumn{4}{l}{\footnotesize * \(p<0.1\), ** \(p<0.05\), *** \(p<0.01\)}\\
+\multicolumn{3}{l}{\footnotesize Standard errors in parentheses}\\
+\multicolumn{3}{l}{\footnotesize * \(p<0.1\), ** \(p<0.05\), *** \(p<0.01\)}\\
 \end{tabular}
 \end{table}

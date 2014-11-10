@@ -1,30 +1,33 @@
 \begin{table}[htbp]\centering
 \def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
 \caption{Testing for csh\_i \label{tab:regression2}}
-\begin{tabular}{l*{3}{c}}
+\begin{tabular}{l*{4}{c}}
 \hline\hline
-            &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}\\
-            &\multicolumn{1}{c}{Benchmark}&\multicolumn{1}{c}{Median}&\multicolumn{1}{c}{Rich}\\
+            &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}\\
+            &\multicolumn{1}{c}{Benchmark}&\multicolumn{1}{c}{Median}&\multicolumn{1}{c}{Rich}&\multicolumn{1}{c}{model23}\\
 \hline
-Democracy   &     -0.0019   &      0.0028   &     -0.0009   \\
-            &    (0.0019)   &    (0.0026)   &    (0.0021)   \\
+Democracy   &      0.0040   &      0.0004   &     -0.0019   &     -0.0009   \\
+            &    (0.0030)   &    (0.0030)   &    (0.0019)   &    (0.0021)   \\
 [1em]
-L.csh\_i     &      0.8191***&               &      0.8033***\\
-            &    (0.0077)   &               &    (0.0085)   \\
+gdppc1979d  &     -0.0755   &               &               &               \\
+            &    (0.0502)   &               &               &               \\
 [1em]
-gdppcld     &               &      0.0146   &               \\
-            &               &    (0.0272)   &               \\
+L.lgdppc    &      0.1571***&      0.1304***&               &               \\
+            &    (0.0131)   &    (0.0146)   &               &               \\
 [1em]
-L.lgdppc    &               &      0.2580***&               \\
-            &               &    (0.0167)   &               \\
+gdppcld     &               &      0.1366***&               &               \\
+            &               &    (0.0295)   &               &               \\
 [1em]
-Constant    &      0.0474***&      0.0130*  &      0.0420***\\
-            &    (0.0072)   &    (0.0068)   &    (0.0069)   \\
+L.csh\_i     &               &               &      0.8191***&      0.8033***\\
+            &               &               &    (0.0077)   &    (0.0085)   \\
+[1em]
+Constant    &      0.0055   &      0.0054   &      0.0474***&      0.0420***\\
+            &    (0.0105)   &    (0.0105)   &    (0.0072)   &    (0.0069)   \\
 \hline
-\(N\)       &        5780   &        4577   &        4785   \\
-adj. \(R^{2}\)&       0.677   &       0.109   &       0.667   \\
+\(N\)       &        5581   &        5647   &        5780   &        4785   \\
+adj. \(R^{2}\)&       0.039   &       0.046   &       0.677   &       0.667   \\
 \hline\hline
-\multicolumn{4}{l}{\footnotesize Standard errors in parentheses}\\
-\multicolumn{4}{l}{\footnotesize * \(p<0.1\), ** \(p<0.05\), *** \(p<0.01\)}\\
+\multicolumn{5}{l}{\footnotesize Standard errors in parentheses}\\
+\multicolumn{5}{l}{\footnotesize * \(p<0.1\), ** \(p<0.05\), *** \(p<0.01\)}\\
 \end{tabular}
 \end{table}

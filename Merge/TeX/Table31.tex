@@ -1,36 +1,36 @@
 \begin{table}[htbp]\centering
 \def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
 \caption{Testing for csh\_c \label{tab:regression1}}
-\begin{tabular}{l*{3}{c}}
+\begin{tabular}{l*{5}{c}}
 \hline\hline
-            &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}\\
-            &\multicolumn{1}{c}{Benchmark}&\multicolumn{1}{c}{Median}&\multicolumn{1}{c}{Rich}\\
+            &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}&\multicolumn{1}{c}{(5)}\\
+            &\multicolumn{1}{c}{Benchmark}&\multicolumn{1}{c}{Median}&\multicolumn{1}{c}{Rich}&\multicolumn{1}{c}{model14}&\multicolumn{1}{c}{model10}\\
 \hline
-Democracy   &      0.0038   &      0.0042   &      0.0023   \\
-            &    (0.0028)   &    (0.0026)   &    (0.0032)   \\
+Democracy   &      0.0026   &      0.0014   &      0.0023   &      0.0024   &      0.0038   \\
+            &    (0.0029)   &    (0.0030)   &    (0.0032)   &    (0.0040)   &    (0.0028)   \\
 [1em]
-L.csh\_c     &      1.0120***&               &      1.0234***\\
-            &    (0.0079)   &               &    (0.0086)   \\
+L.lgdppc    &      0.1618***&      0.1273***&               &     -0.2930***&               \\
+            &    (0.0129)   &    (0.0139)   &               &    (0.0136)   &               \\
 [1em]
-L.lgdppc    &               &      0.1871***&               \\
-            &               &    (0.0156)   &               \\
+L2.lgdppc   &               &     -0.0420***&               &     -0.2685***&               \\
+            &               &    (0.0138)   &               &    (0.0126)   &               \\
 [1em]
-L2.lgdppc   &               &     -0.0084   &               \\
-            &               &    (0.0155)   &               \\
+L3.lgdppc   &               &      0.0369***&               &     -0.0932***&               \\
+            &               &    (0.0136)   &               &    (0.0124)   &               \\
 [1em]
-L3.lgdppc   &               &      0.0549***&               \\
-            &               &    (0.0151)   &               \\
+L4.lgdppc   &               &     -0.0161   &               &     -0.0013   &               \\
+            &               &    (0.0130)   &               &    (0.0125)   &               \\
 [1em]
-L4.lgdppc   &               &     -0.0067   &               \\
-            &               &    (0.0138)   &               \\
+L.csh\_c     &               &               &      1.0234***&               &      1.0120***\\
+            &               &               &    (0.0086)   &               &    (0.0079)   \\
 [1em]
-Constant    &     -0.0109   &      0.0220***&     -0.0142   \\
-            &    (0.0117)   &    (0.0065)   &    (0.0117)   \\
+Constant    &      0.0055   &      0.0278***&     -0.0142   &               &     -0.0109   \\
+            &    (0.0105)   &    (0.0102)   &    (0.0117)   &               &    (0.0117)   \\
 \hline
-\(N\)       &        5780   &        4195   &        4785   \\
-adj. \(R^{2}\)&       0.746   &       0.054   &       0.749   \\
+\(N\)       &        5647   &        5249   &        4785   &        5108   &        5780   \\
+adj. \(R^{2}\)&       0.042   &       0.025   &       0.749   &               &       0.746   \\
 \hline\hline
-\multicolumn{4}{l}{\footnotesize Standard errors in parentheses}\\
-\multicolumn{4}{l}{\footnotesize * \(p<0.1\), ** \(p<0.05\), *** \(p<0.01\)}\\
+\multicolumn{6}{l}{\footnotesize Standard errors in parentheses}\\
+\multicolumn{6}{l}{\footnotesize * \(p<0.1\), ** \(p<0.05\), *** \(p<0.01\)}\\
 \end{tabular}
 \end{table}

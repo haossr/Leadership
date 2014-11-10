@@ -1,24 +1,24 @@
 \begin{table}[htbp]\centering
 \def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
 \caption{Testing for csh\_nx \label{tab:regression4}}
-\begin{tabular}{l*{3}{c}}
+\begin{tabular}{l*{2}{c}}
 \hline\hline
-            &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}\\
-            &\multicolumn{1}{c}{Benchmark}&\multicolumn{1}{c}{Median}&\multicolumn{1}{c}{Rich}\\
+            &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}\\
+            &\multicolumn{1}{c}{Benchmark}&\multicolumn{1}{c}{Median}\\
 \hline
-Democracy   &      0.0123*  &     -0.0017   &      0.0467   \\
-            &    (0.0071)   &    (0.0080)   &    (0.0381)   \\
+Democracy   &      0.0123*  &      0.0133   \\
+            &    (0.0071)   &    (0.0084)   \\
 [1em]
-L.csh\_nx    &      1.1469***&      0.6271***&      0.8225***\\
-            &    (0.0064)   &    (0.0213)   &    (0.0165)   \\
+L.csh\_nx    &      1.1469***&      1.1592***\\
+            &    (0.0064)   &    (0.0073)   \\
 [1em]
-Constant    &     -0.0089   &      0.1551***&      0.0823   \\
-            &    (0.0264)   &    (0.0260)   &    (0.0806)   \\
+Constant    &     -0.0089   &     -0.0430   \\
+            &    (0.0264)   &    (0.0272)   \\
 \hline
-\(N\)       &        5780   &        1455   &        1273   \\
-adj. \(R^{2}\)&       0.860   &       0.574   &       0.746   \\
+\(N\)       &        5780   &        4785   \\
+adj. \(R^{2}\)&       0.860   &       0.852   \\
 \hline\hline
-\multicolumn{4}{l}{\footnotesize Standard errors in parentheses}\\
-\multicolumn{4}{l}{\footnotesize * \(p<0.1\), ** \(p<0.05\), *** \(p<0.01\)}\\
+\multicolumn{3}{l}{\footnotesize Standard errors in parentheses}\\
+\multicolumn{3}{l}{\footnotesize * \(p<0.1\), ** \(p<0.05\), *** \(p<0.01\)}\\
 \end{tabular}
 \end{table}
