@@ -1,0 +1,24 @@
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{Testing for loghc \label{tab:testingloghc}}
+\begin{tabular}{l*{3}{c}}
+\hline\hline
+            &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}\\
+            &\multicolumn{1}{c}{Benchmark}&\multicolumn{1}{c}{Poor}&\multicolumn{1}{c}{Rich}\\
+\hline
+democracy   &      0.0003   &     -0.0003   &      0.0042** \\
+            &    (0.0003)   &    (0.0003)   &    (0.0017)   \\
+[1em]
+L.loghc     &      0.9915***&      0.9819***&      0.9851***\\
+            &    (0.0014)   &    (0.0018)   &    (0.0028)   \\
+[1em]
+Constant    &     -7.4803***&     -8.4865***&     -2.2143***\\
+            &    (0.4558)   &    (0.5580)   &    (0.8167)   \\
+\hline
+\(N\)       &        5229   &        4096   &        1133   \\
+adj. \(R^{2}\)&       0.999   &       0.999   &       0.998   \\
+\hline\hline
+\multicolumn{4}{l}{\footnotesize Standard errors in parentheses}\\
+\multicolumn{4}{l}{\footnotesize * \(p<0.1\), ** \(p<0.05\), *** \(p<0.01\)}\\
+\end{tabular}
+\end{table}

@@ -1,0 +1,30 @@
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{GMM \label{tab:GMM}}
+\begin{tabular}{l*{5}{c}}
+\hline\hline
+            &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}&\multicolumn{1}{c}{(5)}\\
+            &\multicolumn{1}{c}{Benchmark}&\multicolumn{1}{c}{GMM}&\multicolumn{1}{c}{Poor}&\multicolumn{1}{c}{Median}&\multicolumn{1}{c}{Rich}\\
+\hline
+gk          &      0.3806***&      0.4125***&      0.8092***&      0.2946***&      0.7368***\\
+            &    (0.0524)   &    (0.0595)   &    (0.2541)   &    (0.0865)   &    (0.1347)   \\
+[1em]
+gl          &      0.4309***&      0.3748***&      0.1345   &      0.2858***&      0.5008***\\
+            &    (0.0410)   &    (0.0389)   &    (0.1399)   &    (0.0601)   &    (0.0601)   \\
+[1em]
+hc          &     -0.0164   &     -0.0075** &      0.0084   &      0.0051   &     -0.0194** \\
+            &    (0.0110)   &    (0.0037)   &    (0.0230)   &    (0.0114)   &    (0.0093)   \\
+[1em]
+democracy   &     -0.0028   &      0.0046   &     -0.0017   &      0.0024   &     -0.1684** \\
+            &    (0.0040)   &    (0.0046)   &    (0.0093)   &    (0.0084)   &    (0.0697)   \\
+[1em]
+Constant    &     19.6460***&               &               &               &               \\
+            &    (5.4100)   &               &               &               &               \\
+\hline
+\(N\)       &        1880   &        1805   &         164   &         712   &         929   \\
+adj. \(R^{2}\)&       0.080   &               &               &               &               \\
+\hline\hline
+\multicolumn{6}{l}{\footnotesize Standard errors in parentheses}\\
+\multicolumn{6}{l}{\footnotesize * \(p<0.1\), ** \(p<0.05\), *** \(p<0.01\)}\\
+\end{tabular}
+\end{table}
