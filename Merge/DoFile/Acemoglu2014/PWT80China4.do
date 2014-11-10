@@ -27,7 +27,7 @@ forvalue i =3(1)5{
 	gen CHN = 0
 	replace CHN = 1 if PWTCode=="CHN"
 	
-	bysort year (CHN): gen gpppcC = pcgdp[_N]
+	bysort year (CHN): gen gdppcC = pcgdp[_N]
 	bysort year (CHN): gen pcgdpC = pcgdp[_n]/pcgdp[_N]
 
 	gen surpassed = 0 
@@ -66,6 +66,7 @@ gen lgdppc =.
 gen democracy =.
 replace lgdppc = lgdppcW 
 replace democracy = democracyP
+xi:reg lgdppc democracy L.lgdppc `control' i.PIPECode, nocon
 xtreg lgdppc democracy L.lgdppc `control', fe
 est store model22
 *2.2. 
@@ -212,7 +213,7 @@ xtabond2 GrowthRate gk gl hc democracy if rich == 3, gmm(democracy) iv(L.democra
 est store model55
 
 #delimit ;
-esttab model5* using ..\TeX\Table5.tex, drop(year*) replace
+esttab model5* using ..\TeX\Table5.tex, drop(year* _cons) replace
 title("GMM"\label{tab:GMM})
 mtitle("Benchmark" "GMM" "Poor" "Median" "Rich")
 b(%6.4f) se(%6.4f) star(* 0.1 ** 0.05 *** 0.01) ar2 
