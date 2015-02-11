@@ -296,3 +296,75 @@ egen eligibility = rowtotal(elig_*)
 egen eligmiss = rowmiss(elig_*)
 replace eligibility = . if eligmiss>0
 save correlation.dta, replace
+
+
+************************************************************************
+*************** 6. Summary Leaders
+************************************************************************
+use Leadership.dta, clear
+gen age = year - birthyear_ce
+gen age_firstterm = age
+gen age_left = age
+bysort PIPECode cen birthyear_ce (year): replace age_firstterm = age_firstterm[1] if _n!=1
+bysort PIPECode cen birthyear_ce (year): replace age_left = age_left[_N] if _n!=_N
+
+
+
+replace OECD=0 if OECD==.
+replace edu_ce =. if edu_ce==0
+drop if democracy ==.
+drop if year ==.
+
+
+gen pollable = 0
+replace pollable =1 if eligible_pr>0.5
+
+recode year (1950/1960 = 1)(1961/1970 = 2)(1971/1980 = 3)(1981/1990 = 4)(1991/2000 = 5)(2001/2010 = 6), gen(year_G)
+label variable year_G "Year group" 
+label define l_year_G 1 "1950-1960" 2 "1961-1970" 3 "1971-1980" 4 "1981-1990" 5 "1991-2000" 6 "2001-2010"
+label values year_G l_year_G
+
+gen age_d = age if democracy
+gen age_nd = age if !democracy
+
+bysort year_G: egen mage_d = mean(age_d)
+bysort year_G: egen mage_nd = mean(age_nd)
+gen dage_d = mage_d - mage_nd
+
+gen age_oecd = age if OECD
+gen age_noecd = age if !OECD
+bysort year_G: egen mage_oecd = mean(age_oecd)
+bysort year_G: egen mage_noecd = mean(age_noecd)
+gen dage_oecd = mage_oecd - mage_noecd
+
+gen age_poll = age if democracy & pollable
+gen age_npoll = age if !(democracy & pollable)
+bysort year_G: egen mage_poll = mean(age_poll)
+bysort year_G: egen mage_npoll = mean(age_npoll)
+gen dage_poll = mage_poll-mage_npoll
+
+capture drop mage_*
+
+*collapse (mean)age*, by(year_G)
+foreach var of varlist age_*{
+	if strpos("`var'", "_d"){
+	label variable `var' "Democratic countries"
+	}
+	if strpos("`var'", "_nd"){
+	label variable `var' "Non-democratic countries"
+	}
+	if strpos("`var'", "_oecd"){
+	label variable `var' "OECD countries"
+	}
+	if strpos("`var'", "_noecd"){
+	label variable `var' "Non-OECD countries"
+	}
+	if strpos("`var'", "_poll"){
+	label variable `var' "Demo & Pollable countries"
+	}
+	if strpos("`var'", "_npoll"){
+	label variable `var' "Non-Demo or not Pollable countries"
+	}
+}	
+
+save summary_age.dta, replace
