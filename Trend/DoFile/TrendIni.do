@@ -324,6 +324,7 @@ label variable year_G "Year group"
 label define l_year_G 1 "1950-1960" 2 "1961-1970" 3 "1971-1980" 4 "1981-1990" 5 "1991-2000" 6 "2001-2010"
 label values year_G l_year_G
 
+
 gen age_d = age if democracy
 gen age_nd = age if !democracy
 
@@ -367,4 +368,19 @@ foreach var of varlist age_*{
 	}
 }	
 
+foreach var of varlist age_d age_nd{
+	gen `var'_par = `var' if head_title == 1 
+	gen `var'_pre = `var' if head_title == 2
+}
+
+
 save summary_age.dta, replace
+
+*!!!
+*check length_ce
+gen c_length_ce = length_ce - year
+bysort cen c_length_ce: keep if _n==1
+bysort cen: gen Error = _N
+*tab cen Error if Error >3
+sort cen year
+export excel countryn year cen length_ce sourcen using "..\Log\Length_ce.xls" if Error>3, firstrow(variables) replace
