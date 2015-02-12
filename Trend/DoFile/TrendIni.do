@@ -325,8 +325,14 @@ label define l_year_G 1 "1950-1960" 2 "1961-1970" 3 "1971-1980" 4 "1981-1990" 5 
 label values year_G l_year_G
 
 
-gen age_d = age if democracy
-gen age_nd = age if !democracy
+gen dage_exp = age - exp_ce_publicyear - exp_ce_privateyear
+foreach var of varlist length_ce age age_firstterm exp_ce_publicyear exp_ce_privateyear dage_exp edu_ceyear{
+	gen `var'_d = `var' if democracy 
+	gen `var'_nd = `var' if !democracy
+}
+
+*gen age_d = age if democracy
+*gen age_nd = age if !democracy
 
 bysort year_G: egen mage_d = mean(age_d)
 bysort year_G: egen mage_nd = mean(age_nd)
@@ -344,7 +350,22 @@ bysort year_G: egen mage_poll = mean(age_poll)
 bysort year_G: egen mage_npoll = mean(age_npoll)
 gen dage_poll = mage_poll-mage_npoll
 
-capture drop mage_*
+*age - public - private
+*bysort year_G: egen mexp_ce_publicyear = mean(exp_ce_publicyear)
+*bysort year_G: egen mexp_ce_privateyear = mean(exp_ce_privateyear)
+
+corr edu_ceyear dage_exp
+statsby,by(year_G) sa(dage_edu_d,replace): corr edu_ceyear dage_exp if democracy
+statsby,by(year_G) sa(dage_edu_nd,replace): corr edu_ceyear dage_exp if !democracy
+sort year_G
+merge m:1 year_G using dage_edu_d
+rename rho rho_d
+capture drop _merge
+merge m:1 year_G using dage_edu_nd
+rename rho rho_nd
+capture drop _merge
+
+capture drop mage_* mexp_*
 
 *collapse (mean)age*, by(year_G)
 foreach var of varlist age_*{
@@ -368,7 +389,7 @@ foreach var of varlist age_*{
 	}
 }	
 
-foreach var of varlist age_d age_nd{
+foreach var of varlist length_ce_d length_ce_nd{
 	gen `var'_par = `var' if head_title == 1 
 	gen `var'_pre = `var' if head_title == 2
 }
